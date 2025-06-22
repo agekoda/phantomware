@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Phantomware</title>
+  <style>
+    /* Reset & base */
+    * {
+      box-sizing: border-box;
+    }
+    body, html {
+      margin: 0; padding: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #121212;
+      color: #eee;
+      overflow-y: auto;
+      scroll-behavior: smooth;
+    }
+    a {
+      color: #29d8a6;
+      text-decoration: none;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+
+    /* Top nav bar */
+    .nav {
+      position: absolute;
+      top: 1.5rem;
+      right: 1.5rem;
+      display: flex;
+      gap: 1rem;
+      z-index: 10;
+    }
+
+    .nav a {
+      background: #1e1e1e;
+      padding: 0.4rem 1rem;
+      border-radius: 6px;
+      font-weight: 500;
+      font-size: 1rem;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.6);
+      color: #29d8a6;
+      text-decoration: none;
+      transition: background 0.3s;
+    }
+
+    .nav a:hover {
+      background: #2b2b2b;
+    }
+
+    /* Hero */
+    #hero {
+      min-height: 80vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 0 1rem;
+      box-shadow: inset 0 0 200px #121212aa;
+      position: relative;
+    }
+
+    #hero h1 {
+      font-size: 6vw;
+      margin: 0;
+      color: #29d8a6;
+      text-shadow: 0 0 14px #1d7e70;
+      user-select: none;
+    }
+
+    #hero p {
+      margin-top: 0.5rem;
+      font-size: 1.25rem;
+      max-width: 600px;
+      color: #bbb;
+      text-shadow: 0 0 8px #121212cc;
+    }
+
+    /* Content */
+    #content {
+      max-width: 900px;
+      margin: 3rem auto 5rem;
+      padding: 0 1rem;
+    }
+
+    section {
+      margin-bottom: 3rem;
+    }
+
+    section h2 {
+      color: #29d8a6;
+      margin-bottom: 0.75rem;
+      border-bottom: 2px solid #29d8a6;
+      padding-bottom: 0.25rem;
+    }
+
+    section p {
+      font-size: 1.1rem;
+      line-height: 1.5;
+      color: #ddd;
+    }
+
+    /* Schematics images */
+    .schematic-img {
+      max-width: 100%;
+      margin: 1rem 0;
+      border-radius: 8px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.7);
+      display: block;
+    }
+
+    /* PDF embed */
+    .pdf-embed {
+      width: 100%;
+      height: 600px;
+      border: none;
+      border-radius: 8px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.7);
+      margin: 1rem 0;
+    }
+
+    @media (max-width: 600px) {
+      #hero h1 {
+        font-size: 12vw;
+      }
+
+      #hero p {
+        font-size: 1rem;
+      }
+
+      #content {
+        margin: 2rem 1rem 4rem;
+      }
+
+      .pdf-embed {
+        height: 400px;
+      }
+
+      .nav {
+        flex-direction: column;
+        top: 1rem;
+        right: 1rem;
+        gap: 0.5rem;
+      }
+
+      .nav a {
+        font-size: 0.9rem;
+        padding: 0.3rem 0.8rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div id="hero">
+    <div class="nav">
+      <a href="features.html">Features</a>
+      <a href="https://github.com/agekoda/phantomware">Docs</a>
+      <a href="https://github.com/agekoda/phantomware" target="_blank">GitHub</a>
+    </div>
+    <h1>Phantomware</h1>
+    <p>Compact, powerful ESP32-S3 platform for IR, NFC, sensors, display & more.</p>
+  </div>
+
+  <div id="content">
+    <section>
+      <h2>About Phantomware</h2>
+      <p>
+        Phantomware is a versatile multi-function development board featuring the ESP32-S3 microcontroller. 
+        It integrates IR communication, NFC reading/writing, a rich 240x320 TFT display, an SD card reader, a full battery charging circuit with a MAX17055 fuel gauge and overcharge + overcurrent protection,
+        6 navigation buttons, and more — perfect for advanced IoT projects and prototypes.
+      </p>
+    </section>
+
+    <section>
+      <h2>Schematics & Drawings</h2>
+
+      <!-- Example embedded images -->
+      <img src="front.png" alt="Front PCB" class="schematic-img" />
+      <img src="back.jpg" alt="Back PCB" class="schematic-img" />
+      <img src="pcb.jpg" alt="PCB Routing" class="schematic-img" />
+
+      <!-- Example embedded PDF (replace the src with your actual file) -->
+      <iframe src="flipper rip off v1.pdf" class="pdf-embed" title="Phantomware schematic PDF"></iframe>
+    </section>
+  </div>
+
+</body>
+</html>
