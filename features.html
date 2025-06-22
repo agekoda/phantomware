@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Phantomware</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #121212;
+      color: #eee;
+    }
+    a {
+      color: #29d8a6;
+      text-decoration: none;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+
+    main {
+      max-width: 900px;
+      margin: 2rem auto 4rem;
+      padding: 0 1rem;
+      background: #1e1e1e;
+      border-radius: 8px;
+      box-shadow: 0 3px 8px rgba(0,0,0,0.7);
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+
+    header h1 {
+      color: #29d8a6;
+      margin: 0;
+    }
+
+    header p {
+      color: #bbb;
+      font-size: 1.1rem;
+      margin-top: 0.5rem;
+    }
+
+    section {
+      margin-bottom: 2rem;
+    }
+
+    section h2 {
+      color: #29d8a6;
+      margin-bottom: 0.5rem;
+      border-bottom: 2px solid #29d8a6;
+      padding-bottom: 0.25rem;
+    }
+
+    ul {
+      list-style: none;
+      padding-left: 0;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem 2rem;
+    }
+
+    ul li {
+      flex: 1 1 250px;
+      background: #292929;
+      border-radius: 4px;
+      padding: 0.5rem 1rem;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.4);
+	  font-size: 1.2rem;
+    }
+
+    footer {
+      text-align: center;
+      font-size: 0.9rem;
+      color: #555;
+      margin-top: 3rem;
+      padding-bottom: 1rem;
+    }
+
+    footer a {
+      color: #29d8a6;
+    }
+
+    @media (max-width: 600px) {
+      ul li {
+        flex: 1 1 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<main role="main" aria-label="Project Features">
+  <header>
+    <h1>Phantomware</h1>
+    <p>A compact, powerful platform with IR, NFC, sensors, display & more</p>
+  </header>
+
+  <section>
+    <h2>Core Features</h2>
+    <ul>
+      <li>ESP32-S3 microcontroller with Wi-Fi 4 & BLE 5</li>
+      <li>3000mAh LiPo with USB-C charging & 3.3V regulator</li>
+      <li>Manual power switch for true shutdown</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>Inputs & Controls</h2>
+    <ul>
+      <li>6 tactile push buttons for navigation and control</li>
+      <li>IR receiver (TSOP75438) & 3× high-power IR LEDs for remote control</li>
+      <li>PN532 NFC reader/writer over SPI</li>
+      <li>Temperature sensor MCP9701 for ambient/board temperature</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>Visual & Audio Feedback</h2>
+    <ul>
+      <li>240×320 TFT display for rich UI</li>
+      <li>Dual status LEDs (green & red) for system state</li>
+      <li>Piezo buzzer for alarms, feedback, and tunes</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>Storage & Connectivity</h2>
+    <ul>
+      <li>Micro SD card slot for data logging and file storage</li>
+      <li>Full SPI bus sharing PN532 & SD card with dedicated CS pins</li>
+      <li>USB-C port with CC line detection for charging and data</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>Battery & Power Management</h2>
+    <ul>
+      <li>MAX17055 fuel gauge for precise battery monitoring</li>
+      <li>Built-in charging current configuration and status LEDs</li>
+      <li>Overcurrent and thermal protection</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>Expandability & Debugging</h2>
+    <ul>
+      <li>GPIO expansion pins for external modules</li>
+      <li>I²C, SPI, UART breakout pins for external modules</li>
+      <li>All GPIOs assigned for maximum functionality</li>
+    </ul>
+  </section>
+
+  <footer>
+    <p>Made by Dylan Haines — <a href="https://github.com/agekoda" target="_blank" rel="noopener">GitHub</a></p>
+  </footer>
+</main>
+
+</body>
+</html>
