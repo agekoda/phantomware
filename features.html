@@ -3,13 +3,18 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Phantomware</title>
-  <style>
-    body {
-      margin: 0;
+  <title>Phantomware Features</title> <style>
+    /* Reset & base - Copied from index.html for consistency */
+    * {
+      box-sizing: border-box;
+    }
+    body, html {
+      margin: 0; padding: 0;
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       background: #121212;
       color: #eee;
+      overflow-y: auto;
+      scroll-behavior: smooth;
     }
     a {
       color: #29d8a6;
@@ -19,42 +24,82 @@
       text-decoration: underline;
     }
 
-    main {
-      max-width: 900px;
-      margin: 2rem auto 4rem;
-      padding: 0 1rem;
+    /* Top nav bar - Copied from index.html */
+    .nav {
+      position: absolute;
+      top: 1.5rem;
+      right: 1.5rem;
+      display: flex;
+      gap: 1rem;
+      z-index: 10;
+    }
+    .nav a {
       background: #1e1e1e;
-      border-radius: 8px;
-      box-shadow: 0 3px 8px rgba(0,0,0,0.7);
-    }
-
-    header {
-      text-align: center;
-      margin-bottom: 2rem;
-    }
-
-    header h1 {
+      padding: 0.4rem 1rem;
+      border-radius: 6px;
+      font-weight: 500;
+      font-size: 1rem;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.6);
       color: #29d8a6;
+      text-decoration: none;
+      transition: background 0.3s;
+    }
+    .nav a:hover {
+      background: #2b2b2b;
+    }
+
+    /* Hero-like section for Features page */
+    #features-hero {
+      min-height: 50vh; /* A bit shorter than main page hero, adjust as needed */
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 0 1rem;
+      box-shadow: inset 0 0 200px #121212aa;
+      position: relative;
+    }
+    #features-hero h1 {
+      font-size: 5vw; /* Slightly smaller than main hero, adjust as needed */
       margin: 0;
+      color: #29d8a6;
+      text-shadow: 0 0 14px #1d7e70;
+      user-select: none;
     }
-
-    header p {
-      color: #bbb;
-      font-size: 1.1rem;
+    #features-hero p {
       margin-top: 0.5rem;
+      font-size: 1.25rem;
+      max-width: 600px;
+      color: #bbb;
+      text-shadow: 0 0 8px #121212cc;
     }
 
+    /* Content wrapper - Styled like #content in index.html */
+    #features-content {
+      max-width: 900px;
+      margin: 3rem auto 5rem;
+      padding: 0 1rem;
+      /* Removed background, border-radius, box-shadow to match index.html */
+    }
+
+    /* Section headings - Copied from index.html */
     section {
-      margin-bottom: 2rem;
+      margin-bottom: 3rem; /* Adjusted for consistency */
     }
-
     section h2 {
       color: #29d8a6;
-      margin-bottom: 0.5rem;
+      margin-bottom: 0.75rem;
       border-bottom: 2px solid #29d8a6;
       padding-bottom: 0.25rem;
     }
+    section p { /* Add this if you use paragraphs in sections, copied from index.html */
+      font-size: 1.1rem;
+      line-height: 1.5;
+      color: #ddd;
+    }
 
+    /* Feature list items */
     ul {
       list-style: none;
       padding-left: 0;
@@ -62,102 +107,140 @@
       flex-wrap: wrap;
       gap: 1rem 2rem;
     }
-
     ul li {
       flex: 1 1 250px;
       background: #292929;
       border-radius: 4px;
       padding: 0.5rem 1rem;
       box-shadow: 0 2px 6px rgba(0,0,0,0.4);
-	  font-size: 1.2rem;
+      font-size: 1.2rem;
+      line-height: 1.5; /* Added for better readability */
+      color: #ddd; /* Ensure text color is consistent */
     }
 
+    /* Footer - Copied from index.html */
     footer {
       text-align: center;
       font-size: 0.9rem;
-      color: #555;
-      margin-top: 3rem;
-      padding-bottom: 1rem;
+      color: #555; /* Default color for general text, though p inside footer overrides it below */
+      margin-top: 3rem; /* Consistent spacing */
+      padding-bottom: 1rem; /* Consistent padding */
     }
-
+    footer p { /* Specific style for text inside footer */
+        text-align: center;
+        font-size: 0.9rem;
+        color: #555;
+        margin-top: 3rem; /* Moved to p for consistency with original footer */
+        padding-bottom: 1rem; /* Moved to p for consistency with original footer */
+    }
     footer a {
       color: #29d8a6;
+      text-decoration: none; /* Ensure no default underline */
+    }
+    footer a:hover {
+      text-decoration: underline; /* Add underline on hover */
     }
 
+
+    /* Media Queries - Copied from index.html and adjusted */
     @media (max-width: 600px) {
+      #features-hero h1 {
+        font-size: 10vw; /* Adjust for smaller screens */
+      }
+      #features-hero p {
+        font-size: 1rem;
+      }
+      #features-content {
+        margin: 2rem 1rem 4rem;
+      }
       ul li {
         flex: 1 1 100%;
+      }
+      .nav {
+        flex-direction: column;
+        top: 1rem;
+        right: 1rem;
+        gap: 0.5rem;
+      }
+      .nav a {
+        font-size: 0.9rem;
+        padding: 0.3rem 0.8rem;
       }
     }
   </style>
 </head>
 <body>
 
-<main role="main" aria-label="Project Features">
-  <header>
-    <h1>Phantomware</h1>
-    <p>A compact, powerful platform with IR, NFC, sensors, display & more</p>
-  </header>
+  <div class="nav">
+    <a href="index.html">Home</a> <a href="https://github.com/agekoda/phantomware">Docs</a>
+    <a href="https://github.com/agekoda/phantomware" target="_blank">GitHub</a>
+  </div>
 
-  <section>
-    <h2>Core Features</h2>
-    <ul>
-      <li>ESP32-S3 microcontroller with Wi-Fi 4 & BLE 5</li>
-      <li>3000mAh LiPo with USB-C charging & 3.3V regulator</li>
-      <li>Manual power switch for true shutdown</li>
-    </ul>
-  </section>
+  <div id="features-hero">
+    <h1>Phantomware Features</h1>
+    <p>A deep dive into Phantomware's capabilities and specifications.</p>
+  </div>
 
-  <section>
-    <h2>Inputs & Controls</h2>
-    <ul>
-      <li>6 tactile push buttons for navigation and control</li>
-      <li>IR receiver (TSOP75438) & 3× high-power IR LEDs for remote control</li>
-      <li>PN532 NFC reader/writer over SPI</li>
-      <li>Temperature sensor MCP9701 for ambient/board temperature</li>
-    </ul>
-  </section>
+  <div id="features-content" role="main" aria-label="Project Features">
+    <section>
+      <h2>Core Features</h2>
+      <ul>
+        <li>ESP32-S3 microcontroller with Wi-Fi 4 & BLE 5</li>
+        <li>3000mAh LiPo with USB-C charging & 3.3V regulator</li>
+        <li>Manual power switch for true shutdown</li>
+      </ul>
+    </section>
 
-  <section>
-    <h2>Visual & Audio Feedback</h2>
-    <ul>
-      <li>240×320 TFT display for rich UI</li>
-      <li>Dual status LEDs (green & red) for system state</li>
-      <li>Piezo buzzer for alarms, feedback, and tunes</li>
-    </ul>
-  </section>
+    <section>
+      <h2>Inputs & Controls</h2>
+      <ul>
+        <li>6 tactile push buttons for navigation and control</li>
+        <li>IR receiver (TSOP75438) & 3× high-power IR LEDs for remote control</li>
+        <li>PN532 NFC reader/writer over SPI</li>
+        <li>Temperature sensor MCP9701 for ambient/board temperature</li>
+      </ul>
+    </section>
 
-  <section>
-    <h2>Storage & Connectivity</h2>
-    <ul>
-      <li>Micro SD card slot for data logging and file storage</li>
-      <li>Full SPI bus sharing PN532 & SD card with dedicated CS pins</li>
-      <li>USB-C port with CC line detection for charging and data</li>
-    </ul>
-  </section>
+    <section>
+      <h2>Visual & Audio Feedback</h2>
+      <ul>
+        <li>240×320 TFT display for rich UI</li>
+        <li>Dual status LEDs (green & red) for system state</li>
+        <li>Piezo buzzer for alarms, feedback, and tunes</li>
+      </ul>
+    </section>
 
-  <section>
-    <h2>Battery & Power Management</h2>
-    <ul>
-      <li>MAX17055 fuel gauge for precise battery monitoring</li>
-      <li>Built-in charging current configuration and status LEDs</li>
-      <li>Overcurrent and thermal protection</li>
-    </ul>
-  </section>
+    <section>
+      <h2>Storage & Connectivity</h2>
+      <ul>
+        <li>Micro SD card slot for data logging and file storage</li>
+        <li>Full SPI bus sharing PN532 & SD card with dedicated CS pins</li>
+        <li>USB-C port with CC line detection for charging and data</li>
+      </ul>
+    </section>
 
-  <section>
-    <h2>Expandability & Debugging</h2>
-    <ul>
-      <li>GPIO expansion pins for external modules</li>
-      <li>I²C, SPI, UART breakout pins for external modules</li>
-      <li>All GPIOs assigned for maximum functionality</li>
-    </ul>
-  </section>
+    <section>
+      <h2>Battery & Power Management</h2>
+      <ul>
+        <li>MAX17055 fuel gauge for precise battery monitoring</li>
+        <li>Built-in charging current configuration and status LEDs</li>
+        <li>Overcurrent and thermal protection</li>
+      </ul>
+    </section>
 
-  <footer>
-    <p>Made by Dylan Haines — <a href="https://github.com/agekoda" target="_blank" rel="noopener">GitHub</a></p>
-  </footer>
-</main>
+    <section>
+      <h2>Expandability & Debugging</h2>
+      <ul>
+        <li>GPIO expansion pins for external modules</li>
+        <li>I²C, SPI, UART breakout pins for external modules</li>
+        <li>All GPIOs assigned for maximum functionality</li>
+      </ul>
+    </section>
+
+    <footer>
+      <p>Made by Dylan Haines — <a href="https://github.com/agekoda" target="_blank" rel="noopener">GitHub</a></p>
+    </footer>
+  </div>
 
 </body>
 </html>
