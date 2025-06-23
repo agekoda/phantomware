@@ -176,26 +176,33 @@
       </p>
     </section>
 
-    <section>
-      <h2>Schematics & Drawings</h2>
+<section>
+  <h2>Schematics & Drawings</h2>
 
-      <!-- Example embedded images -->
+  <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+    <div style="flex: 1 1 48%;">
       <p>
         Front of PCB
       </p>
-      <img src="front.png" alt="Front PCB" class="schematic-img" />
+      <img src="front.png" alt="Front PCB" class="schematic-img" style="width: 100%; height: auto;" />
+    </div>
+    <div style="flex: 1 1 48%;">
       <p>
         Back of PCB
       </p>
-      <img src="back.png" alt="Back PCB" class="schematic-img" />
-      <p>
-        PCB Layout
-      </p>
-      <img src="pcb.png" alt="PCB Routing" class="schematic-img" />
-      
-      <!-- Example embedded PDF (replace the src with your actual file) -->
-      <iframe src="flipper rip off v1.pdf" class="pdf-embed" title="Phantomware schematic PDF"></iframe>
-    </section>
+      <img src="back.png" alt="Back PCB" class="schematic-img" style="width: 100%; height: auto;" />
+    </div>
+  </div>
+
+  <p>
+    PCB Layout
+  </p>
+  <img src="pcb.png" alt="PCB Routing" class="schematic-img" />
+  <p>
+    Schematic
+  </p>
+  <iframe src="flipper rip off v1.pdf" class="pdf-embed" title="Phantomware schematic PDF"></iframe>
+</section>
   </div>
 
 </body>
