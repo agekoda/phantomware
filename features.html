@@ -3,7 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Phantomware Features</title> <style>
+  <title>Phantomware Features</title>
+  <style>
     /* Reset & base - Copied from index.html for consistency */
     * {
       box-sizing: border-box;
@@ -24,7 +25,6 @@
       text-decoration: underline;
     }
 
-    /* Top nav bar - Copied from index.html */
     .nav {
       position: absolute;
       top: 1.5rem;
@@ -80,12 +80,11 @@
       max-width: 900px;
       margin: 3rem auto 5rem;
       padding: 0 1rem;
-      /* Removed background, border-radius, box-shadow to match index.html */
     }
 
-    /* Section headings - Copied from index.html */
+    /* Section headings and paragraphs - Consistent with index.html */
     section {
-      margin-bottom: 3rem; /* Adjusted for consistency */
+      margin-bottom: 3rem;
     }
     section h2 {
       color: #29d8a6;
@@ -93,68 +92,55 @@
       border-bottom: 2px solid #29d8a6;
       padding-bottom: 0.25rem;
     }
-    section p { /* Add this if you use paragraphs in sections, copied from index.html */
+    section p {
       font-size: 1.1rem;
       line-height: 1.5;
       color: #ddd;
+      margin-bottom: 1rem; /* Added margin for paragraphs for consistent spacing */
     }
 
-    /* Feature list items */
+    /* Feature list items - Removed flexbox layout */
     ul {
-      list-style: none;
-      padding-left: 0;
-      display: flex;
-      flex-wrap: wrap;
-      gap: 1rem 2rem;
+      list-style: disc; /* Use standard bullet points */
+      padding-left: 1.2rem; /* Indent the list */
+      margin-bottom: 1rem; /* Space after the list */
     }
     ul li {
-      flex: 1 1 250px;
-      background: #292929;
-      border-radius: 4px;
-      padding: 0.5rem 1rem;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.4);
-      font-size: 1.2rem;
-      line-height: 1.5; /* Added for better readability */
-      color: #ddd; /* Ensure text color is consistent */
+      font-size: 1.1rem; /* Consistent with paragraph text */
+      line-height: 1.5;
+      color: #ddd;
+      margin-bottom: 0.5rem; /* Space between list items */
+      /* Removed background, border-radius, box-shadow, and flex properties */
     }
+
 
     /* Footer - Copied from index.html */
     footer {
       text-align: center;
       font-size: 0.9rem;
-      color: #555; /* Default color for general text, though p inside footer overrides it below */
-      margin-top: 3rem; /* Consistent spacing */
-      padding-bottom: 1rem; /* Consistent padding */
-    }
-    footer p { /* Specific style for text inside footer */
-        text-align: center;
-        font-size: 0.9rem;
-        color: #555;
-        margin-top: 3rem; /* Moved to p for consistency with original footer */
-        padding-bottom: 1rem; /* Moved to p for consistency with original footer */
+      color: #555;
+      margin-top: 3rem;
+      padding-bottom: 1rem;
     }
     footer a {
       color: #29d8a6;
-      text-decoration: none; /* Ensure no default underline */
+      text-decoration: none;
     }
     footer a:hover {
-      text-decoration: underline; /* Add underline on hover */
+      text-decoration: underline;
     }
 
 
-    /* Media Queries - Copied from index.html and adjusted */
+    /* Media Queries - Consistent with index.html */
     @media (max-width: 600px) {
       #features-hero h1 {
-        font-size: 10vw; /* Adjust for smaller screens */
+        font-size: 10vw;
       }
       #features-hero p {
         font-size: 1rem;
       }
       #features-content {
         margin: 2rem 1rem 4rem;
-      }
-      ul li {
-        flex: 1 1 100%;
       }
       .nav {
         flex-direction: column;
@@ -172,12 +158,13 @@
 <body>
 
   <div class="nav">
-    <a href="index.html">Home</a> <a href="https://github.com/agekoda/phantomware">Docs</a>
+    <a href="https://agekoda.github.io/phantomware/">Home</a>
+    <a href="https://github.com/agekoda/phantomware">Docs</a>
     <a href="https://github.com/agekoda/phantomware" target="_blank">GitHub</a>
   </div>
 
   <div id="features-hero">
-    <h1>Phantomware Features</h1>
+    <h1>Features</h1>
     <p>A deep dive into Phantomware's capabilities and specifications.</p>
   </div>
 
@@ -185,55 +172,46 @@
     <section>
       <h2>Core Features</h2>
       <ul>
-        <li>ESP32-S3 microcontroller with Wi-Fi 4 & BLE 5</li>
-        <li>3000mAh LiPo with USB-C charging & 3.3V regulator</li>
-        <li>Manual power switch for true shutdown</li>
+        <li>**ESP32-S3 Microcontroller:** Powerful dual-core Xtensa LX7 processor with integrated Wi-Fi 4 (802.11n) and Bluetooth Low Energy 5 (BLE).</li>
+        <li>**Robust Power System:** Features a 3000mAh LiPo battery with USB-C charging via TP4056 and a precise MAX17055 fuel gauge for accurate battery monitoring. Includes overcharge and overcurrent protection for safety.</li>
+        <li>**Manual Power Switch:** Provides a true hardware shutdown for complete power control.</li>
       </ul>
     </section>
 
     <section>
       <h2>Inputs & Controls</h2>
       <ul>
-        <li>6 tactile push buttons for navigation and control</li>
-        <li>IR receiver (TSOP75438) & 3× high-power IR LEDs for remote control</li>
-        <li>PN532 NFC reader/writer over SPI</li>
-        <li>Temperature sensor MCP9701 for ambient/board temperature</li>
+        <li>**Navigation Buttons:** 6 tactile push buttons for intuitive navigation and control of the device interface.</li>
+        <li>**Infrared (IR) Transceiver:** Equipped with a TSOP75438 receiver and 3 high-power VSMY14940 LEDs for both receiving and transmitting IR signals, enabling universal remote control and IR data analysis.</li>
+        <li>**NFC Reader/Writer:** Integrates the PN532 NFC chip via SPI for reading, writing, and emulating NFC tags and cards.</li>
+        <li>**Temperature Sensor:** Features an MCP9701 for ambient or board temperature monitoring.</li>
       </ul>
     </section>
 
     <section>
       <h2>Visual & Audio Feedback</h2>
       <ul>
-        <li>240×320 TFT display for rich UI</li>
-        <li>Dual status LEDs (green & red) for system state</li>
-        <li>Piezo buzzer for alarms, feedback, and tunes</li>
+        <li>**High-Resolution Display:** A vibrant 240x320 TFT display (ST7789) for rich user interfaces and data visualization.</li>
+        <li>**Status LEDs:** Dual green and red LEDs provide immediate visual feedback on system state and activity.</li>
+        <li>**Piezo Buzzer:** Offers audible feedback for alarms, button presses, and even simple tunes.</li>
       </ul>
     </section>
 
     <section>
       <h2>Storage & Connectivity</h2>
       <ul>
-        <li>Micro SD card slot for data logging and file storage</li>
-        <li>Full SPI bus sharing PN532 & SD card with dedicated CS pins</li>
-        <li>USB-C port with CC line detection for charging and data</li>
-      </ul>
-    </section>
-
-    <section>
-      <h2>Battery & Power Management</h2>
-      <ul>
-        <li>MAX17055 fuel gauge for precise battery monitoring</li>
-        <li>Built-in charging current configuration and status LEDs</li>
-        <li>Overcurrent and thermal protection</li>
+        <li>**Micro SD Card Slot:** For expandable data logging, custom firmware storage, and file management.</li>
+        <li>**Shared SPI Bus:** The full SPI bus is shared efficiently between the PN532 NFC and SD card, with dedicated Chip Select (CS) pins for each.</li>
+        <li>**USB-C Port:** A modern USB-C port with CC line detection for reliable charging, data transfer, and serial communication.</li>
       </ul>
     </section>
 
     <section>
       <h2>Expandability & Debugging</h2>
       <ul>
-        <li>GPIO expansion pins for external modules</li>
-        <li>I²C, SPI, UART breakout pins for external modules</li>
-        <li>All GPIOs assigned for maximum functionality</li>
+        <li>**GPIO Expansion Pins:** Convenient breakout pins for connecting external modules and custom circuitry.</li>
+        <li>**Communication Breakouts:** Dedicated I²C, SPI, and UART breakout pins for easy integration with other sensors and peripherals.</li>
+        <li>**Maximized GPIO Utilization:** All relevant GPIOs are thoughtfully assigned to ensure maximum functionality and ease of use for developers.</li>
       </ul>
     </section>
 
