@@ -1,21 +1,20 @@
 <!DOCTYPE html>
-<html lang="en" >
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Phantomware</title>
 
   <style>
-    /* Reset & base */
     * {
       box-sizing: border-box;
     }
     body, html {
-      margin: 0; padding: 0;
+      margin: 0;
+      padding: 0;
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       background: #121212;
       color: #eee;
-      overflow-y: auto;
       scroll-behavior: smooth;
     }
     a {
@@ -26,7 +25,6 @@
       text-decoration: underline;
     }
 
-    /* Top nav bar */
     .nav {
       position: absolute;
       top: 1.5rem;
@@ -35,23 +33,20 @@
       gap: 1rem;
       z-index: 10;
     }
-
     .nav a {
       background: #1e1e1e;
       padding: 0.4rem 1rem;
       border-radius: 6px;
       font-weight: 500;
       font-size: 1rem;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.6);
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.6);
       color: #29d8a6;
-      text-decoration: none;
       transition: background 0.3s;
     }
     .nav a:hover {
       background: #2b2b2b;
     }
 
-    /* Hero */
     #hero {
       min-height: 75vh;
       display: flex;
@@ -78,7 +73,6 @@
       text-shadow: 0 0 8px #121212cc;
     }
 
-    /* Content */
     #content {
       max-width: 900px;
       margin: 3rem auto 5rem;
@@ -98,7 +92,7 @@
       line-height: 1.5;
       color: #ddd;
     }
-    /* Schematics images */
+
     .schematic-img {
       max-width: 100%;
       margin: 1rem 0;
@@ -106,7 +100,7 @@
       box-shadow: 0 4px 15px rgba(0,0,0,0.7);
       display: block;
     }
-    /* PDF embed */
+
     .pdf-embed {
       width: 100%;
       height: 600px;
@@ -116,20 +110,39 @@
       margin: 1rem 0;
     }
 
-    /* Footer styles (updated for consistency) */
+    .schematic-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+      margin-bottom: 2rem;
+    }
+    .left-schematic,
+    .right-grid {
+      flex: 1 1 400px;
+      min-width: 280px;
+    }
+
+    .right-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 0.75rem;
+    }
+
+    .right-grid img {
+      width: 100%;
+      border-radius: 8px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.7);
+    }
+
     footer {
-        text-align: center;
-        font-size: 0.9rem;
-        color: #555;
-        margin-top: 3rem;
-        padding-bottom: 1rem;
+      text-align: center;
+      font-size: 0.9rem;
+      color: #555;
+      margin-top: 3rem;
+      padding-bottom: 1rem;
     }
     footer a {
-        color: #29d8a6;
-        text-decoration: none;
-    }
-    footer a:hover {
-        text-decoration: underline;
+      color: #29d8a6;
     }
 
     @media (max-width: 600px) {
@@ -155,35 +168,7 @@
         font-size: 0.9rem;
         padding: 0.3rem 0.8rem;
       }
-      /* Removed duplicate footer p rule from media query, now handled globally */
     }
-    .schematic-row {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 1.5rem;
-  align-items: flex-start;
-  margin-bottom: 2rem;
-}
-
-.left-schematic {
-  flex: 1 1 50%;
-  min-width: 300px;
-}
-
-.right-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 0.75rem;
-  flex: 1 1 50%;
-  min-width: 300px;
-}
-
-.right-grid img {
-  width: 100%;
-  border-radius: 8px;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.7);
-}
-
   </style>
 </head>
 <body>
@@ -277,22 +262,26 @@
 
     <section>
       <h2>Schematics & Drawings</h2>
-    <div class="schematic-row">
-      <div class="left-schematic">
-        <p>Front of PCB</p>
-        <img src="images/front.png" alt="Front PCB" class="schematic-img" />
+
+      <div class="schematic-row">
+        <div class="left-schematic">
+          <p>Front of PCB</p>
+          <img src="images/front.png" alt="Front PCB" class="schematic-img" />
+        </div>
+        <div class="right-grid">
+          <img src="images/3d%201.png" alt="3D View 1" />
+          <img src="images/3d%202.png" alt="3D View 2" />
+          <img src="images/3d%203.png" alt="3D View 3" />
+          <img src="images/3d%204.png" alt="3D View 4" />
+        </div>
       </div>
-      <div class="right-grid">
-        <img src="images/3d 1.png" alt="3D view 1" />
-        <img src="images/3d 2.png" alt="3D view 2" />
-        <img src="images/3d 3.png" alt="3D view 3" />
-        <img src="images/3d 4.png" alt="3D view 4" />
-      </div>
-      </div>
+
       <p>Back of PCB</p>
       <img src="images/back.png" alt="Back PCB" class="schematic-img" />
+
       <p>PCB Wiring</p>
       <img src="images/pcb.png" alt="PCB Routing" class="schematic-img" />
+
       <p>Schematic</p>
       <iframe src="images/schematic.pdf" class="pdf-embed" title="Phantomware schematic PDF"></iframe>
     </section>
