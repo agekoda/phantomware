@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" >
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -35,6 +35,7 @@
       gap: 1rem;
       z-index: 10;
     }
+
     .nav a {
       background: #1e1e1e;
       padding: 0.4rem 1rem;
@@ -97,7 +98,6 @@
       line-height: 1.5;
       color: #ddd;
     }
-
     /* Schematics images */
     .schematic-img {
       max-width: 100%;
@@ -106,20 +106,6 @@
       box-shadow: 0 4px 15px rgba(0,0,0,0.7);
       display: block;
     }
-
-    .three-d-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 1rem;
-      justify-content: center;
-    }
-    .three-d-row img {
-      flex: 1 1 200px;
-      max-width: 100%;
-      border-radius: 8px;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.7);
-    }
-
     /* PDF embed */
     .pdf-embed {
       width: 100%;
@@ -130,20 +116,20 @@
       margin: 1rem 0;
     }
 
-    /* Footer styles */
+    /* Footer styles (updated for consistency) */
     footer {
-      text-align: center;
-      font-size: 0.9rem;
-      color: #555;
-      margin-top: 3rem;
-      padding-bottom: 1rem;
+        text-align: center;
+        font-size: 0.9rem;
+        color: #555;
+        margin-top: 3rem;
+        padding-bottom: 1rem;
     }
     footer a {
-      color: #29d8a6;
-      text-decoration: none;
+        color: #29d8a6;
+        text-decoration: none;
     }
     footer a:hover {
-      text-decoration: underline;
+        text-decoration: underline;
     }
 
     @media (max-width: 600px) {
@@ -169,7 +155,35 @@
         font-size: 0.9rem;
         padding: 0.3rem 0.8rem;
       }
+      /* Removed duplicate footer p rule from media query, now handled globally */
     }
+    .schematic-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  align-items: flex-start;
+  margin-bottom: 2rem;
+}
+
+.left-schematic {
+  flex: 1 1 50%;
+  min-width: 300px;
+}
+
+.right-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.75rem;
+  flex: 1 1 50%;
+  min-width: 300px;
+}
+
+.right-grid img {
+  width: 100%;
+  border-radius: 8px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.7);
+}
+
   </style>
 </head>
 <body>
@@ -194,24 +208,91 @@
     </section>
 
     <section>
+      <h2 style="margin-bottom: 2rem;">Phantomware vs. Flipper Zero</h2>
+      <table style="width: 100%; border-collapse: collapse; margin-top: 1.5rem; background-color: #1e1e1e; border-radius: 8px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.7);">
+        <thead>
+          <tr>
+            <th style="padding: 1rem; border-bottom: 1px solid #29d8a6; text-align: left; background-color: #2b2b2b; color: #29d8a6; font-size: 1.2em;">Feature</th>
+            <th style="padding: 1rem; border-bottom: 1px solid #29d8a6; text-align: center; background-color: #2b2b2b; color: #eee; font-size: 1.2em;">Phantomware</th>
+            <th style="padding: 1rem; border-bottom: 1px solid #29d8a6; text-align: center; background-color: #2b2b2b; color: #eee; font-size: 1.2em;">Flipper Zero*</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td style="padding: 1rem; border-bottom: 1px solid #292929; color: #ddd;">Microcontroller</td>
+            <td style="padding: 1rem; border-bottom: 1px solid #292929; text-align: center; color: #ccc;">ESP32 S3 with Dual-core XTensa LX7</td>
+            <td style="padding: 1rem; border-bottom: 1px solid #292929; text-align: center; color: #ccc;">STM32WB55RG﻿</td>
+          </tr>
+          <tr>
+            <td style="padding: 1rem; border-bottom: 1px solid #292929; background-color: #1c1c1c; color: #ddd;">Bluetooth and WiFi?</td>
+            <td style="padding: 1rem; border-bottom: 1px solid #292929; text-align: center; background-color: #1c1c1c; color: #ccc;">Bluetooth 5 and WiFi 4</td>
+            <td style="padding: 1rem; border-bottom: 1px solid #292929; text-align: center; background-color: #1c1c1c; color: #ccc;">Bluetooth 5.4</td>
+          </tr>
+          <tr>
+            <td style="padding: 1rem; border-bottom: 1px solid #292929; color: #ddd;">Display</td>
+            <td style="padding: 1rem; border-bottom: 1px solid #292929; text-align: center; color: #ccc;">2" 240x320 TFT LCD</td>
+            <td style="padding: 1rem; border-bottom: 1px solid #292929; text-align: center; color: #ccc;">1.4" 128x64 Monochrome LCD</td>
+          </tr>
+          <tr>
+            <td style="padding: 1rem; border-bottom: 1px solid #292929; background-color: #1c1c1c; color: #ddd;">IR Transceiver</td>
+            <td style="padding: 1rem; border-bottom: 1px solid #292929; text-align: center; background-color: #1c1c1c; color: #ccc;">3x VSMY14940 LEDs + TSOP75438WTR Receiver</td>
+            <td style="padding: 1rem; border-bottom: 1px solid #292929; text-align: center; background-color: #1c1c1c; color: #ccc;">3x VSMY14940 LEDs + TSOP75338TR Receiver</td>
+          </tr>
+          <tr>
+            <td style="padding: 1rem; border-bottom: 1px solid #292929; color: #ddd;">NFC Support</td>
+            <td style="padding: 1rem; border-bottom: 1px solid #292929; text-align: center; color: #ccc;">PN532 via SPI</td>
+            <td style="padding: 1rem; border-bottom: 1px solid #292929; text-align: center; color: #ccc;">ST25R3916</td>
+          </tr>
+          <tr>
+            <td style="padding: 1rem; border-bottom: 1px solid #292929; background-color: #1c1c1c; color: #ddd;">Battery & Power Management</td>
+            <td style="padding: 1rem; border-bottom: 1px solid #292929; text-align: center; background-color: #1c1c1c; color: #ccc;">3000mAh LiPo with TP4056 Charger and MAX17055 Low Power Fuel Gauge</td>
+            <td style="padding: 1rem; border-bottom: 1px solid #292929; text-align: center; background-color: #1c1c1c; color: #ccc;">2100mAh LiPo with BQ25896RTWR Charger and BQ27220YZFR Fuel Gauge</td>
+          </tr>
+          <tr>
+            <td style="padding: 1rem; border-bottom: 1px solid #292929; color: #ddd;">Expansion Options</td>
+            <td style="padding: 1rem; border-bottom: 1px solid #292929; text-align: center; color: #ccc;">Micro SD Card and 16 GPIOs for External Modules</td>
+            <td style="padding: 1rem; border-bottom: 1px solid #292929; text-align: center; color: #ccc;">Micro SD Card and 18 GPIOs for External Modules</td>
+          </tr>
+          <tr>
+            <td style="padding: 1rem; background-color: #1c1c1c; color: #ddd;">Target Use Case</td>
+            <td style="padding: 1rem; text-align: center; background-color: #1c1c1c; color: #ccc;">Portable Tool for Signal Analysis, RFID/NFC, Infrared Communication, Digital Tinkering and more</td>
+            <td style="padding: 1rem; text-align: center; background-color: #1c1c1c; color: #ccc;">Pocket-Sized Utility for Sub-GHz Radio, RFID/NFC, Infrared Communication and more</td>
+          </tr>
+          <tr>
+            <td style="padding: 1rem; color: #ddd;">Open Source?</td>
+            <td style="padding: 1rem; text-align: center; color: #ccc;">Open Source and fully customisable</td>
+            <td style="padding: 1rem; text-align: center; color: #ccc;">Open Source with limitations</td>
+          </tr>
+          <tr>
+            <td style="padding: 1rem; background-color: #1c1c1c; color: #ddd;">Typical Price Point</td>
+            <td style="padding: 1rem; text-align: center; background-color: #1c1c1c; color: #ccc;">~$50 USD</td>
+            <td style="padding: 1rem; text-align: center; background-color: #1c1c1c; color: #ccc;">$200 USD</td>
+          </tr>
+        </tbody>
+      </table>
+      <p style="text-align: center; font-size: 0.9em; color: #888; margin-top: 1rem;">
+        * Information for Flipper Zero is based on publicly available specifications and may vary.
+      </p>
+    </section>
+
+    <section>
       <h2>Schematics & Drawings</h2>
-
-      <p>Front of PCB</p>
-      <img src="images/front.png" alt="Front PCB" class="schematic-img" />
-
-      <div class="three-d-row">
+    <div class="schematic-row">
+      <div class="left-schematic">
+        <p>Front of PCB</p>
+        <img src="images/front.png" alt="Front PCB" class="schematic-img" />
+      </div>
+      <div class="right-grid">
         <img src="images/3d 1.png" alt="3D view 1" />
         <img src="images/3d 2.png" alt="3D view 2" />
         <img src="images/3d 3.png" alt="3D view 3" />
         <img src="images/3d 4.png" alt="3D view 4" />
       </div>
-
+      </div>
       <p>Back of PCB</p>
       <img src="images/back.png" alt="Back PCB" class="schematic-img" />
-
       <p>PCB Wiring</p>
       <img src="images/pcb.png" alt="PCB Routing" class="schematic-img" />
-
       <p>Schematic</p>
       <iframe src="images/schematic.pdf" class="pdf-embed" title="Phantomware schematic PDF"></iframe>
     </section>
