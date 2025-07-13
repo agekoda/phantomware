@@ -157,6 +157,33 @@
       }
       /* Removed duplicate footer p rule from media query, now handled globally */
     }
+    .schematic-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  align-items: flex-start;
+  margin-bottom: 2rem;
+}
+
+.left-schematic {
+  flex: 1 1 50%;
+  min-width: 300px;
+}
+
+.right-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.75rem;
+  flex: 1 1 50%;
+  min-width: 300px;
+}
+
+.right-grid img {
+  width: 100%;
+  border-radius: 8px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.7);
+}
+
   </style>
 </head>
 <body>
@@ -208,7 +235,7 @@
           </tr>
           <tr>
             <td style="padding: 1rem; border-bottom: 1px solid #292929; background-color: #1c1c1c; color: #ddd;">IR Transceiver</td>
-            <td style="padding: 1rem; border-bottom: 1px solid #292929; text-align: center; background-color: #1c1c1c; color: #ccc;">3x VSMY14940 LEDs + TSOP75438TT Receiver</td>
+            <td style="padding: 1rem; border-bottom: 1px solid #292929; text-align: center; background-color: #1c1c1c; color: #ccc;">3x VSMY14940 LEDs + TSOP75438WTR Receiver</td>
             <td style="padding: 1rem; border-bottom: 1px solid #292929; text-align: center; background-color: #1c1c1c; color: #ccc;">3x VSMY14940 LEDs + TSOP75338TR Receiver</td>
           </tr>
           <tr>
@@ -238,7 +265,7 @@
           </tr>
           <tr>
             <td style="padding: 1rem; background-color: #1c1c1c; color: #ddd;">Typical Price Point</td>
-            <td style="padding: 1rem; text-align: center; background-color: #1c1c1c; color: #ccc;">~$60 USD</td>
+            <td style="padding: 1rem; text-align: center; background-color: #1c1c1c; color: #ccc;">~$50 USD</td>
             <td style="padding: 1rem; text-align: center; background-color: #1c1c1c; color: #ccc;">$200 USD</td>
           </tr>
         </tbody>
@@ -250,8 +277,18 @@
 
     <section>
       <h2>Schematics & Drawings</h2>
-      <p>Front of PCB</p>
-      <img src="images/front.png" alt="Front PCB" class="schematic-img" />
+    <div class="schematic-row">
+      <div class="left-schematic">
+        <p>Front of PCB</p>
+        <img src="images/front.png" alt="Front PCB" class="schematic-img" />
+      </div>
+      <div class="right-grid">
+        <img src="images/3d 1.png" alt="3D view 1" />
+        <img src="images/3d 2.png" alt="3D view 2" />
+        <img src="images/3d 3.png" alt="3D view 3" />
+        <img src="images/3d 4.png" alt="3D view 4" />
+      </div>
+      </div>
       <p>Back of PCB</p>
       <img src="images/back.png" alt="Back PCB" class="schematic-img" />
       <p>PCB Wiring</p>
