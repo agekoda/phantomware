@@ -183,6 +183,20 @@
   border-radius: 8px;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.7);
 }
+    /* Make the 2x2 image grid full-width */
+.wide-grid {
+  width: 100%;
+  max-width: none;
+  margin-left: -1rem;
+  margin-right: -1rem;
+}
+
+@media (min-width: 1000px) {
+  .wide-grid {
+    margin-left: -2rem;
+    margin-right: -2rem;
+  }
+}
 
   </style>
 </head>
@@ -282,13 +296,13 @@
         <p>Front of PCB</p>
         <img src="images/front.png" alt="Front PCB" class="schematic-img" />
       </div>
-      <div class="right-grid">
+      <div class="right-grid wide-grid">
         <img src="images/3d 1.png" alt="3D view 1" />
         <img src="images/3d 2.png" alt="3D view 2" />
         <img src="images/3d 3.png" alt="3D view 3" />
         <img src="images/3d 4.png" alt="3D view 4" />
       </div>
-      </div>
+    </div>
       <p>Back of PCB</p>
       <img src="images/back.png" alt="Back PCB" class="schematic-img" />
       <p>PCB Wiring</p>
