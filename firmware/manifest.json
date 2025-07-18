@@ -5,15 +5,15 @@
   "chipFamily": "ESP32-S3",
   "parts": [
     {
-      "path": "main.ino.bootloader.bin",
+      "path": "/firmware/main.ino.bootloader.bin",
       "offset": "0x1000"
     },
     {
-      "path": "main.ino.partitions.bin",
+      "path": "/firmware/main.ino.partitions.bin",
       "offset": "0x8000"
     },
     {
-      "path": "main.ino.bin",
+      "path": "/firmware/main.ino.bin",
       "offset": "0x10000"
     }
   ]
