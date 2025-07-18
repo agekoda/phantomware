@@ -1,75 +1,118 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>ESP32 Web Flasher</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Phantomware Web Flasher</title>
+  <style>
+    /* Base & Reset */
+    * {
+      box-sizing: border-box;
+    }
+    body, html {
+      margin: 0; padding: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #121212;
+      color: #eee;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem 1rem;
+      scroll-behavior: smooth;
+      user-select: none;
+    }
+
+    h1 {
+      color: #29d8a6;
+      text-shadow: 0 0 14px #1d7e70;
+      font-size: 3.5rem;
+      margin-bottom: 0.2rem;
+    }
+
+    p {
+      color: #bbb;
+      font-size: 1.2rem;
+      max-width: 600px;
+      margin-top: 0;
+      margin-bottom: 2rem;
+      text-align: center;
+      text-shadow: 0 0 8px #121212cc;
+    }
+
+    /* Button styling */
+    esp-web-install-button button[slot="activate"] {
+      background-color: #29d8a6;
+      color: #121212;
+      border: none;
+      border-radius: 8px;
+      padding: 1rem 3rem;
+      font-size: 1.2rem;
+      font-weight: 600;
+      cursor: pointer;
+      box-shadow: 0 6px 12px rgba(41, 216, 166, 0.5);
+      transition: background-color 0.3s ease, box-shadow 0.3s ease;
+      user-select: none;
+    }
+    esp-web-install-button button[slot="activate"]:hover {
+      background-color: #20b188;
+      box-shadow: 0 8px 18px rgba(32, 177, 136, 0.7);
+    }
+    esp-web-install-button button[slot="activate"]:active {
+      background-color: #19956f;
+      box-shadow: 0 3px 8px rgba(25, 149, 111, 0.9);
+      transform: translateY(1px);
+    }
+
+    /* Status messages */
+    .status {
+      margin-top: 1.5rem;
+      font-family: monospace;
+      font-size: 1.1rem;
+      color: #bbb;
+      text-shadow: 0 0 6px #121212cc;
+      min-height: 1.5em;
+      user-select: text;
+    }
+
+    /* Support & Error slots styling */
+    esp-web-install-button span[slot="unsupported"],
+    esp-web-install-button span[slot="not-allowed"] {
+      display: block;
+      margin-top: 2rem;
+      font-weight: 600;
+      color: #e44c65;
+      text-shadow: 0 0 8px #000;
+      user-select: none;
+    }
+
+    /* Responsive */
+    @media (max-width: 600px) {
+      h1 {
+        font-size: 2.5rem;
+      }
+      p {
+        font-size: 1rem;
+        max-width: 90vw;
+      }
+      esp-web-install-button button[slot="activate"] {
+        padding: 0.8rem 2rem;
+        font-size: 1rem;
+      }
+    }
+  </style>
 </head>
 <body>
-  <h1>ESP32 Web Flasher</h1>
-  <button id="connect">🔌 Connect</button>
-  <button id="flash">🚀 Flash Firmware</button>
-  <p id="status">Status: Not connected</p>
+  <h1>Phantomware ESP32-S3 Web Flasher</h1>
+  <p>Flash your ESP32-S3 firmware directly from your browser.<br>Click the button below to connect and start flashing.</p>
 
-  <script type="module">
-    import initEsptool from "https://unpkg.com/esptool-js@0.6.0/esptool.min.js";
+  <esp-web-install-button manifest="./firmware/manifest.json">
+    <button slot="activate">Connect & Flash</button>
+    <span slot="unsupported">Your browser doesn’t support WebSerial API</span>
+    <span slot="not-allowed">Please use HTTPS to access this page</span>
+  </esp-web-install-button>
 
-    let esptool;
-    let port;
-
-    const fileMap = {
-      "main.ino.bootloader.bin": 0x1000,
-      "main.ino.partitions.bin": 0x8000,
-      "main.ino.bin": 0x10000,
-    };
-
-    const loadFiles = async () => {
-      const files = {};
-      for (const [name, offset] of Object.entries(fileMap)) {
-        const resp = await fetch(name);
-        if (!resp.ok) throw new Error(`Failed to fetch ${name}`);
-        const arrayBuffer = await resp.arrayBuffer();
-        files[offset] = new Uint8Array(arrayBuffer);
-      }
-      return files;
-    };
-
-    document.getElementById("connect").onclick = async () => {
-      try {
-        port = await navigator.serial.requestPort();
-        await port.open({ baudRate: 115200 });
-
-        esptool = await initEsptool();
-        await esptool.initialize(port);
-        document.getElementById("status").textContent = "Status: Connected";
-      } catch (e) {
-        document.getElementById("status").textContent = "Error: " + e.message;
-        console.error(e);
-      }
-    };
-
-    document.getElementById("flash").onclick = async () => {
-      if (!esptool || !port) {
-        alert("Connect to device first.");
-        return;
-      }
-
-      document.getElementById("status").textContent = "Status: Flashing...";
-
-      try {
-        const files = await loadFiles();
-
-        for (const [offset, data] of Object.entries(files)) {
-          const addr = parseInt(offset);
-          console.log(`Flashing at 0x${addr.toString(16)}...`);
-          await esptool.flashData(addr, data);
-        }
-
-        document.getElementById("status").textContent = "✅ Flashing complete!";
-      } catch (e) {
-        document.getElementById("status").textContent = "❌ Error flashing: " + e.message;
-        console.error(e);
-      }
-    };
-  </script>
+  <script type="module" src="https://unpkg.com/esp-web-tools@10/dist/web/install-button.js?module"></script>
 </body>
 </html>
