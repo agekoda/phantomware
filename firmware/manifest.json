@@ -1,20 +1,24 @@
 {
   "name": "Phantomware v1.0",
-  "version": "1.0.0",
-  "build": "2025-07-18",
-  "chipFamily": "ESP32-S3",
-  "parts": [
+  "new_install_prompt_erase": true,
+  "builds": [
     {
-      "path": "main.ino.bootloader.bin",
-      "offset": "0x1000"
-    },
-    {
-      "path": "main.ino.partitions.bin",
-      "offset": "0x8000"
-    },
-    {
-      "path": "main.ino.bin",
-      "offset": "0x10000"
+      "chipFamily": "ESP32-S3",
+      "improv": false,
+      "parts": [
+        {
+          "path": "https://agekoda.github.io/phantomware/firmware/main.ino.bootloader.bin",
+          "offset": 0x1000
+        },
+        {
+          "path": "https://agekoda.github.io/phantomware/firmware/main.ino.partitions.bin",
+          "offset": 0x8000
+        },
+        {
+          "path": "https://agekoda.github.io/phantomware/firmware/main.ino.bin",
+          "offset": 0x10000
+        }
+      ]
     }
   ]
 }
