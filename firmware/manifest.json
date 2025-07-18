@@ -1,22 +1,22 @@
 {
   "name": "Phantomware v1.0",
+  "version": "1.0.0",
   "new_install_prompt_erase": true,
   "builds": [
     {
       "chipFamily": "ESP32-S3",
-      "improv": false,
       "parts": [
         {
-          "path": "main.ino.bootloader.bin",
-          "offset": 0x1000
+          "path": "/phantomware/firmware/main.ino.bootloader.bin",
+          "offset": 4096
         },
         {
-          "path": "main.ino.partitions.bin",
-          "offset": 0x8000
+          "path": "/phantomware/firmware/main.ino.partitions.bin",
+          "offset": 32768
         },
         {
-          "path": "main.ino.bin",
-          "offset": 0x10000
+          "path": "/phantomware/firmware/main.ino.bin",
+          "offset": 65536
         }
       ]
     }
