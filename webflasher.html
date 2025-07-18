@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>ESP32 Web Flasher</title>
+</head>
+<body>
+  <h1>ESP32 Web Flasher</h1>
+  <button id="connect">🔌 Connect</button>
+  <button id="flash">🚀 Flash Firmware</button>
+  <p id="status">Status: Not connected</p>
+
+  <script type="module">
+    import initEsptool from "https://unpkg.com/esptool-js@0.6.0/esptool.min.js";
+
+    let esptool;
+    let port;
+
+    const fileMap = {
+      "main.ino.bootloader.bin": 0x1000,
+      "main.ino.partitions.bin": 0x8000,
+      "main.ino.bin": 0x10000,
+    };
+
+    const loadFiles = async () => {
+      const files = {};
+      for (const [name, offset] of Object.entries(fileMap)) {
+        const resp = await fetch(name);
+        if (!resp.ok) throw new Error(`Failed to fetch ${name}`);
+        const arrayBuffer = await resp.arrayBuffer();
+        files[offset] = new Uint8Array(arrayBuffer);
+      }
+      return files;
+    };
+
+    document.getElementById("connect").onclick = async () => {
+      try {
+        port = await navigator.serial.requestPort();
+        await port.open({ baudRate: 115200 });
+
+        esptool = await initEsptool();
+        await esptool.initialize(port);
+        document.getElementById("status").textContent = "Status: Connected";
+      } catch (e) {
+        document.getElementById("status").textContent = "Error: " + e.message;
+        console.error(e);
+      }
+    };
+
+    document.getElementById("flash").onclick = async () => {
+      if (!esptool || !port) {
+        alert("Connect to device first.");
+        return;
+      }
+
+      document.getElementById("status").textContent = "Status: Flashing...";
+
+      try {
+        const files = await loadFiles();
+
+        for (const [offset, data] of Object.entries(files)) {
+          const addr = parseInt(offset);
+          console.log(`Flashing at 0x${addr.toString(16)}...`);
+          await esptool.flashData(addr, data);
+        }
+
+        document.getElementById("status").textContent = "✅ Flashing complete!";
+      } catch (e) {
+        document.getElementById("status").textContent = "❌ Error flashing: " + e.message;
+        console.error(e);
+      }
+    };
+  </script>
+</body>
+</html>
