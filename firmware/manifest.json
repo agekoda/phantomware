@@ -1,0 +1,20 @@
+{
+  "name": "My ESP32-S3 Firmware",
+  "version": "1.0.0",
+  "build": "2025-07-18",
+  "chipFamily": "ESP32-S3",
+  "parts": [
+    {
+      "path": "main.ino.bootloader.bin",
+      "offset": "0x1000"
+    },
+    {
+      "path": "main.ino.partitions.bin",
+      "offset": "0x8000"
+    },
+    {
+      "path": "main.ino.bin",
+      "offset": "0x10000"
+    }
+  ]
+}
