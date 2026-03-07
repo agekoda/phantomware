@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Phantomware · refined</title>
+  <title>Phantomware</title>
   <style>
     /* ----- RESET & GLOBAL ----- */
     * {
@@ -138,7 +138,7 @@
       max-width: 780px;
     }
 
-    /* ----- FULL‑WIDTH MEDIA BLOCK (background now matches section) ----- */
+    /* ----- FULL‑WIDTH MEDIA BLOCK ----- */
     .full-bleed {
       width: 100vw;
       position: relative;
@@ -146,7 +146,7 @@
       right: 50%;
       margin-left: -50vw;
       margin-right: -50vw;
-      background: #0f0f0f;        /* changed from #0a0a0a to match section bg */
+      background: #0f0f0f;
       padding: 2rem calc((100vw - 100%) / 2);
     }
 
@@ -156,18 +156,18 @@
       padding: 0 1.5rem;
     }
 
-    /* front + 3d grid row - left image bigger & shifted left */
+    /* front + 3d grid row - even bigger now */
     .schematic-row {
       display: flex;
       flex-wrap: wrap;
-      gap: 2rem;
+      gap: 2.5rem;
       align-items: stretch;
       margin-bottom: 3rem;
     }
 
     .left-schematic {
-      flex: 1.5 1 550px;           /* increased size */
-      min-width: 320px;
+      flex: 2 1 650px;           /* significantly bigger */
+      min-width: 380px;
     }
 
     .left-schematic img {
@@ -176,19 +176,21 @@
       border-radius: 24px;
       box-shadow: 0 25px 40px -12px #000000cc;
       border: 1px solid #2d4a45;
-      transition: transform 0.3s ease;
+      transition: transform 0.3s ease, border-color 0.2s;
       display: block;
+      cursor: pointer;
     }
 
     .left-schematic img:hover {
-      transform: scale(1.01);
+      transform: scale(1.02);
+      border-color: #2dd4bf;
     }
 
     .right-grid {
-      flex: 1 1 500px;
+      flex: 1 1 600px;            /* bigger to match */
       display: grid;
       grid-template-columns: repeat(2, 1fr);
-      gap: 1.2rem;
+      gap: 1.5rem;
     }
 
     .right-grid img {
@@ -198,25 +200,26 @@
       border-radius: 20px;
       box-shadow: 0 20px 30px -10px black;
       border: 1px solid #2e4d48;
-      transition: 0.25s ease;
+      transition: transform 0.25s ease, border-color 0.2s;
+      cursor: pointer;
     }
 
     .right-grid img:hover {
-      transform: scale(1.02);
+      transform: scale(1.03);
       border-color: #2dd4bf;
     }
 
-    /* NEW: two‑column row for back + pcb wiring */
+    /* dual image row (back + pcb wiring) */
     .dual-image-row {
       display: flex;
       flex-wrap: wrap;
-      gap: 2rem;
-      margin: 2.5rem 0;
+      gap: 2.5rem;
+      margin: 3rem 0;
     }
 
     .dual-image-row .image-card {
-      flex: 1 1 300px;
-      min-width: 250px;
+      flex: 1 1 400px;
+      min-width: 300px;
     }
 
     .dual-image-row img {
@@ -225,11 +228,13 @@
       border-radius: 24px;
       box-shadow: 0 25px 40px -12px #000;
       border: 1px solid #2d4a45;
-      transition: 0.2s;
+      transition: transform 0.25s ease, border-color 0.2s;
       display: block;
+      cursor: pointer;
     }
 
     .dual-image-row img:hover {
+      transform: scale(1.02);
       border-color: #2dd4bf80;
     }
 
@@ -241,20 +246,6 @@
       display: block;
       font-weight: 400;
       letter-spacing: 0.3px;
-    }
-
-    /* standalone images (no longer used for back/pcb, but keep for safety) */
-    .full-image {
-      width: 100%;
-      border-radius: 28px;
-      box-shadow: 0 30px 50px -20px #000000;
-      border: 1px solid #2b4b46;
-      transition: 0.2s;
-      margin: 2rem 0;
-    }
-
-    .full-image:hover {
-      border-color: #2dd4bf80;
     }
 
     .pdf-embed {
@@ -323,6 +314,79 @@
       color: #9cd4cb;
     }
 
+    /* ----- LIGHTBOX STYLES ----- */
+    .lightbox-overlay {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.95);
+      backdrop-filter: blur(8px);
+      z-index: 1000;
+      cursor: pointer;
+      justify-content: center;
+      align-items: center;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .lightbox-overlay.active {
+      display: flex;
+      opacity: 1;
+    }
+
+    .lightbox-content {
+      max-width: 90vw;
+      max-height: 90vh;
+      position: relative;
+      transform: scale(0.9);
+      transition: transform 0.3s ease;
+    }
+
+    .lightbox-overlay.active .lightbox-content {
+      transform: scale(1);
+    }
+
+    .lightbox-content img {
+      max-width: 100%;
+      max-height: 90vh;
+      object-fit: contain;
+      border-radius: 12px;
+      box-shadow: 0 0 40px rgba(45, 212, 191, 0.2);
+      border: 2px solid #2dd4bf40;
+    }
+
+    .lightbox-close {
+      position: absolute;
+      top: -40px;
+      right: 0;
+      color: white;
+      font-size: 2rem;
+      cursor: pointer;
+      background: rgba(0,0,0,0.5);
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.2s;
+    }
+
+    .lightbox-close:hover {
+      background: rgba(45, 212, 191, 0.3);
+    }
+
+    .lightbox-caption {
+      position: absolute;
+      bottom: -40px;
+      left: 0;
+      color: #97a7a4;
+      font-size: 1rem;
+    }
+
     /* responsive adjustments */
     @media (max-width: 700px) {
       #hero h1 {
@@ -357,6 +421,13 @@
       }
       .container {
         padding: 0 1.2rem;
+      }
+      .lightbox-close {
+        top: 10px;
+        right: 10px;
+      }
+      .lightbox-caption {
+        bottom: 10px;
       }
     }
   </style>
@@ -416,42 +487,42 @@
       </div>
     </div>
 
-    <!-- SCHEMATICS – full bleed with fixed background -->
+    <!-- SCHEMATICS – full bleed with clickable images -->
     <div class="section" style="padding-bottom: 2rem;">
       <div class="container">
         <h2>Schematics & Drawings</h2>
-        <p style="margin-bottom: 1rem;">Front, back, 3D views, PCB layout — now edge to edge.</p>
+        <p style="margin-bottom: 1rem;">Click any image to enlarge — front, back, 3D views, PCB layout.</p>
       </div>
 
       <div class="full-bleed">
         <div class="media-grid">
-          <!-- front + 3d grid row (left image bigger) -->
+          <!-- front + 3d grid row (bigger now) -->
           <div class="schematic-row">
             <div class="left-schematic">
-              <img src="images/front.png" alt="Front PCB">
+              <img src="images/front.png" alt="Front PCB" class="clickable-image" data-caption="Front of PCB">
               <span class="caption">Front of PCB</span>
             </div>
             <div class="right-grid">
-              <img src="images/3d 1.png" alt="3D view 1">
-              <img src="images/3d 2.png" alt="3D view 2">
-              <img src="images/3d 3.png" alt="3D view 3">
-              <img src="images/3d 4.png" alt="3D view 4">
+              <img src="images/3d 1.png" alt="3D view 1" class="clickable-image" data-caption="3D view - angle 1">
+              <img src="images/3d 2.png" alt="3D view 2" class="clickable-image" data-caption="3D view - angle 2">
+              <img src="images/3d 3.png" alt="3D view 3" class="clickable-image" data-caption="3D view - angle 3">
+              <img src="images/3d 4.png" alt="3D view 4" class="clickable-image" data-caption="3D view - angle 4">
             </div>
           </div>
 
-          <!-- back + pcb wiring side by side (new dual row) -->
+          <!-- back + pcb wiring side by side -->
           <div class="dual-image-row">
             <div class="image-card">
-              <img src="images/back.png" alt="Back PCB">
+              <img src="images/back.png" alt="Back PCB" class="clickable-image" data-caption="Back of PCB">
               <span class="caption">Back of PCB</span>
             </div>
             <div class="image-card">
-              <img src="images/pcb.png" alt="PCB Routing">
+              <img src="images/pcb.png" alt="PCB Routing" class="clickable-image" data-caption="PCB Wiring / Routing">
               <span class="caption">PCB Wiring</span>
             </div>
           </div>
 
-          <!-- schematic pdf (unchanged) -->
+          <!-- schematic pdf -->
           <p style="color: #bcdad3; font-size: 1.4rem; font-weight: 400; margin: 2rem 0 0.5rem;">Schematic (PDF)</p>
           <iframe src="images/schematic.pdf" class="pdf-embed" title="Phantomware schematic PDF"></iframe>
         </div>
@@ -459,8 +530,64 @@
     </div>
 
     <div class="footer container">
-      <p>Made by Dylan Haines, 2026 — <a href="https://github.com/agekoda" target="_blank" rel="noopener">GitHub</a></p>
+      <p>Made by Dylan Haines, 2026 - <a href="https://github.com/agekoda" target="_blank" rel="noopener">GitHub</a></p>
     </div>
   </div>
+
+  <!-- Lightbox overlay -->
+  <div class="lightbox-overlay" id="lightbox">
+    <div class="lightbox-content">
+      <img src="" alt="" id="lightbox-img">
+      <div class="lightbox-close" id="lightbox-close">×</div>
+      <div class="lightbox-caption" id="lightbox-caption"></div>
+    </div>
+  </div>
+
+  <script>
+    // Lightbox functionality
+    document.addEventListener('DOMContentLoaded', function() {
+      const lightbox = document.getElementById('lightbox');
+      const lightboxImg = document.getElementById('lightbox-img');
+      const lightboxCaption = document.getElementById('lightbox-caption');
+      const lightboxClose = document.getElementById('lightbox-close');
+      
+      // Get all clickable images
+      const clickableImages = document.querySelectorAll('.clickable-image');
+      
+      // Open lightbox when image is clicked
+      clickableImages.forEach(img => {
+        img.addEventListener('click', function(e) {
+          e.stopPropagation();
+          const src = this.getAttribute('src');
+          const caption = this.getAttribute('data-caption') || this.alt || 'Phantomware image';
+          
+          lightboxImg.src = src;
+          lightboxImg.alt = this.alt;
+          lightboxCaption.textContent = caption;
+          lightbox.classList.add('active');
+          document.body.style.overflow = 'hidden'; // prevent scrolling
+        });
+      });
+      
+      // Close lightbox functions
+      function closeLightbox() {
+        lightbox.classList.remove('active');
+        document.body.style.overflow = ''; // restore scrolling
+      }
+      
+      lightbox.addEventListener('click', closeLightbox);
+      lightboxClose.addEventListener('click', function(e) {
+        e.stopPropagation();
+        closeLightbox();
+      });
+      
+      // Close with Escape key
+      document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && lightbox.classList.contains('active')) {
+          closeLightbox();
+        }
+      });
+    });
+  </script>
 </body>
 </html>
