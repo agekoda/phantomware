@@ -1,189 +1,351 @@
 <!DOCTYPE html>
-<html lang="en" >
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Phantomware</title>
-
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Phantomware · edge to edge</title>
   <style>
-    /* Reset & base */
+    /* ----- RESET & GLOBAL ----- */
     * {
+      margin: 0;
+      padding: 0;
       box-sizing: border-box;
     }
-    body, html {
-      margin: 0; padding: 0;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background: #121212;
-      color: #eee;
-      overflow-y: auto;
+
+    body {
+      background: #0c0c0c;
+      font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+      color: #e4e4e4;
+      line-height: 1.5;
       scroll-behavior: smooth;
     }
-    a {
-      color: #29d8a6;
-      text-decoration: none;
+
+    /* fallback – Inter looks great but we add system fallback */
+    h1, h2, h3 {
+      font-weight: 500;
+      letter-spacing: -0.02em;
     }
+
+    a {
+      color: #2dd4bf;
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
     a:hover {
+      color: #5eead4;
       text-decoration: underline;
     }
 
-    /* Top nav bar */
+    /* ----- NAVIGATION (lighter, elevated) ----- */
     .nav {
       position: absolute;
-      top: 1.5rem;
-      right: 1.5rem;
+      top: 2rem;
+      right: 2rem;
       display: flex;
-      gap: 1rem;
-      z-index: 10;
+      gap: 0.75rem;
+      z-index: 20;
+      flex-wrap: wrap;
+      justify-content: flex-end;
     }
 
     .nav a {
-      background: #1e1e1e;
-      padding: 0.4rem 1rem;
-      border-radius: 6px;
+      background: rgba(20, 20, 20, 0.8);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      border: 1px solid #2dd4bf20;
+      padding: 0.5rem 1.2rem;
+      border-radius: 40px;
       font-weight: 500;
-      font-size: 1rem;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.6);
-      color: #29d8a6;
-      text-decoration: none;
-      transition: background 0.3s;
-    }
-    .nav a:hover {
-      background: #2b2b2b;
+      font-size: 0.95rem;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.5);
+      color: #e0f2fe;
+      transition: 0.2s;
     }
 
-    /* Hero */
+    .nav a:hover {
+      background: #1f2a2a;
+      border-color: #2dd4bf;
+      text-decoration: none;
+    }
+
+    /* ----- HERO (full width, clean) ----- */
     #hero {
-      min-height: 75vh;
+      min-height: 85vh;
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
       text-align: center;
-      padding: 0 1rem;
-      box-shadow: inset 0 0 200px #121212aa;
+      padding: 0 1.5rem;
+      background: radial-gradient(ellipse at 70% 40%, #1b3b3a20, #0a0a0a 80%);
       position: relative;
     }
+
     #hero h1 {
-      font-size: 6vw;
+      font-size: 7vw;
+      font-weight: 600;
+      background: linear-gradient(130deg, #b6f0e6, #2dd4bf);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
       margin: 0;
-      color: #29d8a6;
-      text-shadow: 0 0 14px #1d7e70;
-      user-select: none;
-    }
-    #hero p {
-      margin-top: 0.5rem;
-      font-size: 1.25rem;
-      max-width: 600px;
-      color: #bbb;
-      text-shadow: 0 0 8px #121212cc;
+      text-shadow: 0 0 30px #1b9e8e60;
+      line-height: 1.1;
     }
 
-    /* Content */
-    #content {
-      max-width: 900px;
-      margin: 3rem auto 5rem;
-      padding: 0 1rem;
+    #hero p {
+      font-size: 1.5rem;
+      max-width: 750px;
+      margin-top: 1rem;
+      color: #b0c4c2;
+      font-weight: 300;
     }
-    section {
+
+    /* ----- MAIN LAYOUT – full width with inner containers ----- */
+    #main-content {
+      width: 100%;
+      background: #0f0f0f;
+    }
+
+    /* every textual block gets a centered container */
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+
+    /* section spacing */
+    .section {
+      padding: 5rem 0;
+      border-bottom: 1px solid #202020;
+    }
+
+    .section:last-child {
+      border-bottom: none;
+    }
+
+    .section h2 {
+      font-size: 2.5rem;
+      font-weight: 500;
+      color: #ccf0e8;
+      margin-bottom: 2rem;
+      border-left: 6px solid #2dd4bf;
+      padding-left: 1.5rem;
+    }
+
+    .section p {
+      font-size: 1.2rem;
+      color: #c4d1cf;
+      margin-bottom: 2rem;
+      max-width: 780px;
+    }
+
+    /* ----- FULL‑WIDTH MEDIA BLOCKS (images stretch edge to edge) ----- */
+    .full-bleed {
+      width: 100vw;
+      position: relative;
+      left: 50%;
+      right: 50%;
+      margin-left: -50vw;
+      margin-right: -50vw;
+      background: #0a0a0a; /* subtle background for the media region */
+      padding: 2rem calc((100vw - 100%) / 2); /* optical alignment */
+    }
+
+    /* inner wrapper for the actual images (keeps spacing) */
+    .media-grid {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+    }
+
+    /* flexible row for front + 3d grid */
+    .schematic-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2rem;
+      align-items: stretch;
       margin-bottom: 3rem;
     }
-    section h2 {
-      color: #29d8a6;
-      margin-bottom: 0.75rem;
-      border-bottom: 2px solid #29d8a6;
-      padding-bottom: 0.25rem;
+
+    .left-schematic {
+      flex: 1 1 400px;
+      min-width: 280px;
     }
-    section p {
-      font-size: 1.1rem;
-      line-height: 1.5;
-      color: #ddd;
-    }
-    /* Schematics images */
-    .schematic-img {
-      max-width: 100%;
-      margin: 1rem 0;
-      border-radius: 8px;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.7);
+
+    .left-schematic img {
+      width: 100%;
+      height: auto;
+      border-radius: 24px;
+      box-shadow: 0 25px 40px -12px #000000cc;
+      border: 1px solid #2d4a45;
+      transition: transform 0.3s ease;
       display: block;
     }
-    /* PDF embed */
+
+    .left-schematic img:hover {
+      transform: scale(1.01);
+    }
+
+    .right-grid {
+      flex: 1 1 500px;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.2rem;
+    }
+
+    .right-grid img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 20px;
+      box-shadow: 0 20px 30px -10px black;
+      border: 1px solid #2e4d48;
+      transition: 0.25s ease;
+    }
+
+    .right-grid img:hover {
+      transform: scale(1.02);
+      border-color: #2dd4bf;
+    }
+
+    /* standalone images (back, pcb) – also full bleed */
+    .full-image {
+      margin: 2.5rem 0;
+      width: 100%;
+      border-radius: 28px;
+      box-shadow: 0 30px 50px -20px #000000;
+      border: 1px solid #2b4b46;
+      transition: 0.2s;
+    }
+
+    .full-image:hover {
+      border-color: #2dd4bf80;
+    }
+
+    /* PDF iframe – keep nice but contained inside media grid */
     .pdf-embed {
       width: 100%;
-      height: 600px;
+      height: 700px;
       border: none;
-      border-radius: 8px;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.7);
-      margin: 1rem 0;
+      border-radius: 28px;
+      box-shadow: 0 25px 40px -12px #000;
+      margin: 2.5rem 0 1rem;
+      border: 1px solid #2b4b46;
     }
 
-    /* Footer styles (updated for consistency) */
-    footer {
-        text-align: center;
-        font-size: 0.9rem;
-        color: #555;
-        margin-top: 3rem;
-        padding-bottom: 1rem;
-    }
-    footer a {
-        color: #29d8a6;
-        text-decoration: none;
-    }
-    footer a:hover {
-        text-decoration: underline;
+    /* image captions (still inside centered container for clean reading) */
+    .caption {
+      font-size: 1rem;
+      color: #97a7a4;
+      margin-top: 0.5rem;
+      margin-bottom: 2rem;
+      display: block;
+      font-weight: 400;
+      letter-spacing: 0.3px;
     }
 
-    @media (max-width: 600px) {
+    /* override default image margins */
+    img {
+      display: block;
+    }
+
+    /* comparison table – make it pop */
+    .comparison-table {
+      width: 100%;
+      border-collapse: collapse;
+      background: #151515;
+      border-radius: 28px;
+      overflow: hidden;
+      box-shadow: 0 25px 35px -15px #000000;
+      margin: 2.5rem 0 1rem;
+      border: 1px solid #2c4944;
+    }
+
+    .comparison-table th {
+      background: #1c2c2a;
+      color: #ccf0e8;
+      font-weight: 500;
+      font-size: 1.2rem;
+      padding: 1.4rem 1rem;
+      text-align: left;
+      border-bottom: 2px solid #2dd4bf;
+    }
+
+    .comparison-table td {
+      padding: 1.2rem 1rem;
+      border-bottom: 1px solid #2a2a2a;
+      color: #cfdfdc;
+    }
+
+    .comparison-table tr:last-child td {
+      border-bottom: none;
+    }
+
+    .comparison-table td:first-child {
+      font-weight: 500;
+      color: #e9f5f2;
+      background: #1d1d1d;
+    }
+
+    .comparison-table td:nth-child(2),
+    .comparison-table td:nth-child(3) {
+      text-align: center;
+      background: #191919;
+    }
+
+    /* footer */
+    .footer {
+      text-align: center;
+      font-size: 1rem;
+      color: #5a6f6b;
+      padding: 3rem 0 4rem;
+      border-top: 1px solid #202020;
+    }
+
+    .footer a {
+      color: #9cd4cb;
+    }
+
+    /* responsive adjustments */
+    @media (max-width: 700px) {
       #hero h1 {
-        font-size: 12vw;
+        font-size: 14vw;
       }
       #hero p {
-        font-size: 1rem;
-      }
-      #content {
-        margin: 2rem 1rem 4rem;
-      }
-      .pdf-embed {
-        height: 400px;
+        font-size: 1.2rem;
       }
       .nav {
-        flex-direction: column;
         top: 1rem;
         right: 1rem;
-        gap: 0.5rem;
+        gap: 0.4rem;
       }
       .nav a {
-        font-size: 0.9rem;
-        padding: 0.3rem 0.8rem;
+        padding: 0.35rem 1rem;
+        font-size: 0.85rem;
       }
-      /* Removed duplicate footer p rule from media query, now handled globally */
+      .section h2 {
+        font-size: 2rem;
+      }
+      .right-grid {
+        grid-template-columns: 1fr; /* stack on small */
+      }
+      .pdf-embed {
+        height: 450px;
+      }
+      .full-bleed {
+        padding: 1rem 0;
+      }
+      .container {
+        padding: 0 1.2rem;
+      }
     }
-    .schematic-row {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 1.5rem;
-  align-items: flex-start;
-  margin-bottom: 2rem;
-}
 
-.left-schematic {
-  flex: 1 1 50%;
-  min-width: 300px;
-}
-
-.right-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 0.75rem;
-  flex: 1 1 50%;
-  min-width: 300px;
-}
-
-.right-grid img {
-  width: 100%;
-  border-radius: 8px;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.7);
-}
-
+    /* subtle hover for links */
+    .btn-subtle {
+      transition: all 0.2s;
+    }
   </style>
 </head>
 <body>
@@ -197,109 +359,97 @@
     <p>Compact, powerful ESP32-S3 platform for IR, NFC, sensors, display & more.</p>
   </div>
 
-  <div id="content">
-    <section>
-      <h2>About Phantomware</h2>
-      <p>
-        Phantomware is a versatile multi-function development board featuring the ESP32 S3 microcontroller.
-        It integrates IR communication, NFC reading/writing, a rich 240x320 TFT display, an SD card reader, a 3000mAh battery and full charging circuit with a MAX17055 fuel gauge and overcharge + overcurrent protection,
-        6 navigation buttons, and more — perfect for advanced IoT projects and prototypes.
-      </p>
-    </section>
-
-    <section>
-      <h2 style="margin-bottom: 2rem;">Phantomware vs. Flipper Zero</h2>
-      <table style="width: 100%; border-collapse: collapse; margin-top: 1.5rem; background-color: #1e1e1e; border-radius: 8px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.7);">
-        <thead>
-          <tr>
-            <th style="padding: 1rem; border-bottom: 1px solid #29d8a6; text-align: left; background-color: #2b2b2b; color: #29d8a6; font-size: 1.2em;">Feature</th>
-            <th style="padding: 1rem; border-bottom: 1px solid #29d8a6; text-align: center; background-color: #2b2b2b; color: #eee; font-size: 1.2em;">Phantomware</th>
-            <th style="padding: 1rem; border-bottom: 1px solid #29d8a6; text-align: center; background-color: #2b2b2b; color: #eee; font-size: 1.2em;">Flipper Zero*</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td style="padding: 1rem; border-bottom: 1px solid #292929; color: #ddd;">Microcontroller</td>
-            <td style="padding: 1rem; border-bottom: 1px solid #292929; text-align: center; color: #ccc;">ESP32 S3 with Dual-core XTensa LX7</td>
-            <td style="padding: 1rem; border-bottom: 1px solid #292929; text-align: center; color: #ccc;">STM32WB55RG﻿</td>
-          </tr>
-          <tr>
-            <td style="padding: 1rem; border-bottom: 1px solid #292929; background-color: #1c1c1c; color: #ddd;">Bluetooth and WiFi?</td>
-            <td style="padding: 1rem; border-bottom: 1px solid #292929; text-align: center; background-color: #1c1c1c; color: #ccc;">Bluetooth 5 and WiFi 4</td>
-            <td style="padding: 1rem; border-bottom: 1px solid #292929; text-align: center; background-color: #1c1c1c; color: #ccc;">Bluetooth 5.4</td>
-          </tr>
-          <tr>
-            <td style="padding: 1rem; border-bottom: 1px solid #292929; color: #ddd;">Display</td>
-            <td style="padding: 1rem; border-bottom: 1px solid #292929; text-align: center; color: #ccc;">2" 240x320 TFT LCD</td>
-            <td style="padding: 1rem; border-bottom: 1px solid #292929; text-align: center; color: #ccc;">1.4" 128x64 Monochrome LCD</td>
-          </tr>
-          <tr>
-            <td style="padding: 1rem; border-bottom: 1px solid #292929; background-color: #1c1c1c; color: #ddd;">IR Transceiver</td>
-            <td style="padding: 1rem; border-bottom: 1px solid #292929; text-align: center; background-color: #1c1c1c; color: #ccc;">3x VSMY14940 LEDs + TSOP75438WTR Receiver</td>
-            <td style="padding: 1rem; border-bottom: 1px solid #292929; text-align: center; background-color: #1c1c1c; color: #ccc;">3x VSMY14940 LEDs + TSOP75338TR Receiver</td>
-          </tr>
-          <tr>
-            <td style="padding: 1rem; border-bottom: 1px solid #292929; color: #ddd;">NFC Support</td>
-            <td style="padding: 1rem; border-bottom: 1px solid #292929; text-align: center; color: #ccc;">PN532 via SPI</td>
-            <td style="padding: 1rem; border-bottom: 1px solid #292929; text-align: center; color: #ccc;">ST25R3916</td>
-          </tr>
-          <tr>
-            <td style="padding: 1rem; border-bottom: 1px solid #292929; background-color: #1c1c1c; color: #ddd;">Battery & Power Management</td>
-            <td style="padding: 1rem; border-bottom: 1px solid #292929; text-align: center; background-color: #1c1c1c; color: #ccc;">3000mAh LiPo with TP4056 Charger and MAX17055 Low Power Fuel Gauge</td>
-            <td style="padding: 1rem; border-bottom: 1px solid #292929; text-align: center; background-color: #1c1c1c; color: #ccc;">2100mAh LiPo with BQ25896RTWR Charger and BQ27220YZFR Fuel Gauge</td>
-          </tr>
-          <tr>
-            <td style="padding: 1rem; border-bottom: 1px solid #292929; color: #ddd;">Expansion Options</td>
-            <td style="padding: 1rem; border-bottom: 1px solid #292929; text-align: center; color: #ccc;">Micro SD Card and 16 GPIOs for External Modules</td>
-            <td style="padding: 1rem; border-bottom: 1px solid #292929; text-align: center; color: #ccc;">Micro SD Card and 18 GPIOs for External Modules</td>
-          </tr>
-          <tr>
-            <td style="padding: 1rem; background-color: #1c1c1c; color: #ddd;">Target Use Case</td>
-            <td style="padding: 1rem; text-align: center; background-color: #1c1c1c; color: #ccc;">Portable Tool for Signal Analysis, RFID/NFC, Infrared Communication, Digital Tinkering and more</td>
-            <td style="padding: 1rem; text-align: center; background-color: #1c1c1c; color: #ccc;">Pocket-Sized Utility for Sub-GHz Radio, RFID/NFC, Infrared Communication and more</td>
-          </tr>
-          <tr>
-            <td style="padding: 1rem; color: #ddd;">Open Source?</td>
-            <td style="padding: 1rem; text-align: center; color: #ccc;">Open Source and fully customisable</td>
-            <td style="padding: 1rem; text-align: center; color: #ccc;">Open Source with limitations</td>
-          </tr>
-          <tr>
-            <td style="padding: 1rem; background-color: #1c1c1c; color: #ddd;">Typical Price Point</td>
-            <td style="padding: 1rem; text-align: center; background-color: #1c1c1c; color: #ccc;">~$50 USD</td>
-            <td style="padding: 1rem; text-align: center; background-color: #1c1c1c; color: #ccc;">$200 USD</td>
-          </tr>
-        </tbody>
-      </table>
-      <p style="text-align: center; font-size: 0.9em; color: #888; margin-top: 1rem;">
-        * Information for Flipper Zero is based on publicly available specifications and may vary.
-      </p>
-    </section>
-
-    <section>
-      <h2>Schematics & Drawings</h2>
-    <div class="schematic-row">
-      <div class="left-schematic">
-        <p>Front of PCB</p>
-        <img src="images/front.png" alt="Front PCB" class="schematic-img" />
+  <!-- main area: full width, with inner containers for text -->
+  <div id="main-content">
+    <!-- ABOUT section -->
+    <div class="section">
+      <div class="container">
+        <h2>About Phantomware</h2>
+        <p>
+          Phantomware is a versatile multi-function development board featuring the ESP32 S3 microcontroller.
+          It integrates IR communication, NFC reading/writing, a rich 240x320 TFT display, an SD card reader, a 3000mAh battery and full charging circuit with a MAX17055 fuel gauge and overcharge + overcurrent protection,
+          6 navigation buttons, and more — perfect for advanced IoT projects and prototypes.
+        </p>
       </div>
-      <div class="right-grid">
-        <img src="images/3d 1.png" alt="3D view 1" />
-        <img src="images/3d 2.png" alt="3D view 2" />
-        <img src="images/3d 3.png" alt="3D view 3" />
-        <img src="images/3d 4.png" alt="3D view 4" />
-      </div>
-      </div>
-      <p>Back of PCB</p>
-      <img src="images/back.png" alt="Back PCB" class="schematic-img" />
-      <p>PCB Wiring</p>
-      <img src="images/pcb.png" alt="PCB Routing" class="schematic-img" />
-      <p>Schematic</p>
-      <iframe src="images/schematic.pdf" class="pdf-embed" title="Phantomware schematic PDF"></iframe>
-    </section>
+    </div>
 
-    <footer>
-      <p>Made by Dylan Haines — <a href="https://github.com/agekoda" target="_blank" rel="noopener">GitHub</a></p>
-    </footer>
+    <!-- COMPARISON section (text inside container, table naturally expands but we keep it inside container for readability) -->
+    <div class="section">
+      <div class="container">
+        <h2>Phantomware vs. Flipper Zero</h2>
+        <table class="comparison-table">
+          <thead>
+            <tr>
+              <th>Feature</th>
+              <th>Phantomware</th>
+              <th>Flipper Zero*</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>Microcontroller</td><td>ESP32 S3 Dual-core XTensa LX7</td><td>STM32WB55RG</td></tr>
+            <tr><td>Bluetooth and WiFi?</td><td>Bluetooth 5 & WiFi 4</td><td>Bluetooth 5.4</td></tr>
+            <tr><td>Display</td><td>2" 240x320 TFT LCD</td><td>1.4" 128x64 Monochrome</td></tr>
+            <tr><td>IR Transceiver</td><td>3x VSMY14940 LEDs + TSOP75438WTR</td><td>3x VSMY14940 + TSOP75338TR</td></tr>
+            <tr><td>NFC Support</td><td>PN532 via SPI</td><td>ST25R3916</td></tr>
+            <tr><td>Battery & Power Mgmt</td><td>3000mAh LiPo + TP4056 + MAX17055</td><td>2100mAh + BQ25896 + BQ27220</td></tr>
+            <tr><td>Expansion Options</td><td>Micro SD + 16 GPIOs</td><td>Micro SD + 18 GPIOs</td></tr>
+            <tr><td>Target Use Case</td><td>Signal analysis, RFID/NFC, IR, tinkering</td><td>Sub-GHz, RFID/NFC, IR, utility</td></tr>
+            <tr><td>Open Source?</td><td>Open Source & fully customisable</td><td>Open Source with limitations</td></tr>
+            <tr><td>Typical Price Point</td><td>~$50 USD</td><td>$200 USD</td></tr>
+          </tbody>
+        </table>
+        <p style="text-align: center; font-size: 0.9em; color: #77918d; margin-top: 1.5rem;">
+          * Information for Flipper Zero is based on publicly available specifications and may vary.
+        </p>
+      </div>
+    </div>
+
+    <!-- SCHEMATICS – this section uses full‑bleed for all images -->
+    <div class="section" style="padding-bottom: 2rem;">
+      <div class="container">
+        <h2>Schematics & Drawings</h2>
+        <p style="margin-bottom: 1rem;">Front, back, 3D views and full pcb layout — now edge to edge.</p>
+      </div>
+
+      <!-- full width media block -->
+      <div class="full-bleed">
+        <div class="media-grid">
+
+          <!-- front + 3d grid row (full width) -->
+          <div class="schematic-row">
+            <div class="left-schematic">
+              <img src="images/front.png" alt="Front PCB">
+              <span class="caption">Front of PCB</span>
+            </div>
+            <div class="right-grid">
+              <img src="images/3d 1.png" alt="3D view 1">
+              <img src="images/3d 2.png" alt="3D view 2">
+              <img src="images/3d 3.png" alt="3D view 3">
+              <img src="images/3d 4.png" alt="3D view 4">
+            </div>
+          </div>
+
+          <!-- back image -->
+          <img src="images/back.png" alt="Back PCB" class="full-image">
+          <span class="caption" style="margin-top: -1rem;">Back of PCB</span>
+
+          <!-- pcb wiring image -->
+          <img src="images/pcb.png" alt="PCB Routing" class="full-image">
+          <span class="caption" style="margin-top: -1rem;">PCB Wiring</span>
+
+          <!-- schematic pdf - still fits media grid width but we want it clean -->
+          <p style="color: #bcdad3; font-size: 1.4rem; font-weight: 400; margin: 2rem 0 0.5rem;">Schematic (PDF)</p>
+          <iframe src="images/schematic.pdf" class="pdf-embed" title="Phantomware schematic PDF"></iframe>
+        </div>
+      </div>
+    </div>
+
+    <!-- footer sits inside main content flow, not full bleed -->
+    <div class="footer container">
+      <p>Made by Dylan Haines, 2026 — <a href="https://github.com/agekoda" target="_blank" rel="noopener">GitHub</a></p>
+    </div>
   </div>
+
+  <!-- subtle note: all images are placeholders – replace with your actual files in /images/ -->
 </body>
 </html>
