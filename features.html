@@ -3,53 +3,72 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Phantomware Features</title>
+  <title>Phantomware · Features</title>
   <style>
-    /* Reset & base - Consistent */
+    /* ----- RESET & GLOBAL (matching main site) ----- */
     * {
+      margin: 0;
+      padding: 0;
       box-sizing: border-box;
     }
-    body, html {
-      margin: 0; padding: 0;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background: #121212;
-      color: #eee;
-      overflow-y: auto;
+
+    body {
+      background: #0c0c0c;
+      font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+      color: #e4e4e4;
+      line-height: 1.5;
       scroll-behavior: smooth;
     }
-    a {
-      color: #29d8a6;
-      text-decoration: none;
+
+    h1, h2, h3 {
+      font-weight: 500;
+      letter-spacing: -0.02em;
     }
+
+    a {
+      color: #2dd4bf;
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
     a:hover {
+      color: #5eead4;
       text-decoration: underline;
     }
 
-    /* Top nav bar - Consistent */
+    /* ----- NAVIGATION (glassmorphic, matching main site) ----- */
     .nav {
       position: absolute;
-      top: 1.5rem;
-      right: 1.5rem;
+      top: 2rem;
+      right: 2rem;
       display: flex;
-      gap: 1rem;
-      z-index: 10;
-    }
-    .nav a {
-      background: #1e1e1e;
-      padding: 0.4rem 1rem;
-      border-radius: 6px;
-      font-weight: 500;
-      font-size: 1rem;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.6);
-      color: #29d8a6;
-      text-decoration: none;
-      transition: background 0.3s;
-    }
-    .nav a:hover {
-      background: #2b2b2b;
+      gap: 0.75rem;
+      z-index: 20;
+      flex-wrap: wrap;
+      justify-content: flex-end;
     }
 
-    /* Hero-like section for Features page - Consistent */
+    .nav a {
+      background: rgba(20, 20, 20, 0.8);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      border: 1px solid #2dd4bf20;
+      padding: 0.5rem 1.2rem;
+      border-radius: 40px;
+      font-weight: 500;
+      font-size: 0.95rem;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.5);
+      color: #e0f2fe;
+      transition: 0.2s;
+    }
+
+    .nav a:hover {
+      background: #1f2a2a;
+      border-color: #2dd4bf;
+      text-decoration: none;
+    }
+
+    /* ----- HERO (matching main site gradient & style) ----- */
     #features-hero {
       min-height: 50vh;
       display: flex;
@@ -57,116 +76,214 @@
       justify-content: center;
       align-items: center;
       text-align: center;
-      padding: 0 1rem;
-      box-shadow: inset 0 0 200px #121212aa;
+      padding: 0 1.5rem;
+      background: radial-gradient(ellipse at 70% 40%, #1b3b3a20, #0a0a0a 80%);
       position: relative;
     }
+
     #features-hero h1 {
       font-size: 5vw;
+      font-weight: 600;
+      background: linear-gradient(130deg, #b6f0e6, #2dd4bf);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
       margin: 0;
-      color: #29d8a6;
-      text-shadow: 0 0 14px #1d7e70;
-      user-select: none;
+      text-shadow: 0 0 30px #1b9e8e60;
+      line-height: 1.1;
     }
+
     #features-hero p {
-      margin-top: 0.5rem;
-      font-size: 1.25rem;
-      max-width: 600px;
-      color: #bbb;
-      text-shadow: 0 0 8px #121212cc;
+      font-size: 1.5rem;
+      max-width: 750px;
+      margin-top: 1rem;
+      color: #b0c4c2;
+      font-weight: 300;
     }
 
-    /* Main content wrapper - Consistent */
+    /* ----- MAIN CONTENT (container matches main site) ----- */
     #features-content {
-      max-width: 900px;
-      margin: 3rem auto 5rem;
-      padding: 0 1rem;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 3rem 2rem 5rem;
+      background: #0f0f0f;
     }
 
-    /* Section headings - Consistent */
+    /* section headings (with teal border, matching) */
     section {
-      margin-bottom: 3rem;
-    }
-    section h2 {
-      color: #29d8a6;
-      margin-bottom: 1.5rem; /* Increased margin for better separation from cards */
-      border-bottom: 2px solid #29d8a6;
-      padding-bottom: 0.25rem;
+      margin-bottom: 4rem;
     }
 
-    /* NEW: Feature Card Styling */
+    section h2 {
+      font-size: 2.5rem;
+      font-weight: 500;
+      color: #ccf0e8;
+      margin-bottom: 2rem;
+      border-left: 6px solid #2dd4bf;
+      padding-left: 1.5rem;
+    }
+
+    /* ----- FEATURE CARDS (refined, with hover lift & subtle border) ----- */
     .feature-card {
-      background: #1e1e1e; /* Slightly lighter background than body */
-      padding: 1.5rem;
-      border-radius: 8px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.5); /* Subtle shadow for depth */
-      margin-bottom: 1.5rem; /* Space between cards */
-      transition: transform 0.2s ease-in-out; /* Smooth hover effect */
+      background: #151515;        /* slightly lighter than main bg */
+      padding: 2rem;
+      border-radius: 24px;        /* more modern, rounded */
+      box-shadow: 0 20px 30px -15px #000000cc;
+      margin-bottom: 1.5rem;
+      border: 1px solid #2c4944;  /* subtle teal border */
+      transition: transform 0.25s ease, border-color 0.2s, box-shadow 0.25s;
     }
 
     .feature-card:hover {
-      transform: translateY(-5px); /* Card lifts up on hover */
+      transform: translateY(-6px);
+      border-color: #2dd4bf80;
+      box-shadow: 0 30px 40px -18px #000;
     }
 
     .feature-card h3 {
-      color: #29d8a6; /* Green heading for feature name */
+      color: #ccf0e8;             /* softer teal than bright green */
       margin-top: 0;
       margin-bottom: 0.75rem;
-      font-size: 1.3rem;
+      font-size: 1.6rem;
+      font-weight: 500;
       line-height: 1.3;
     }
 
     .feature-card p {
-      font-size: 1.05rem; /* Slightly smaller than main section p */
+      font-size: 1.15rem;
       line-height: 1.6;
-      color: #ccc; /* Slightly lighter text for contrast against card background */
-      margin-bottom: 0; /* Remove default paragraph margin at bottom */
+      color: #c4d1cf;             /* softer gray */
+      margin-bottom: 0;
     }
 
+    /* optional small accent for extra polish */
+    .feature-card::before {
+      content: '';
+      display: block;
+      width: 40px;
+      height: 3px;
+      background: #2dd4bf;
+      border-radius: 2px;
+      margin-bottom: 1rem;
+      opacity: 0.7;
+    }
 
-    /* Footer - Consistent */
+    /* ----- FOOTER (matching main) ----- */
     footer {
       text-align: center;
-      font-size: 0.9rem;
-      color: #555;
+      font-size: 1rem;
+      color: #5a6f6b;
+      padding: 3rem 0 2rem;
+      border-top: 1px solid #202020;
       margin-top: 3rem;
-      padding-bottom: 1rem;
     }
+
     footer a {
-      color: #29d8a6;
-      text-decoration: none;
-    }
-    footer a:hover {
-      text-decoration: underline;
+      color: #9cd4cb;
     }
 
+    /* ----- LIGHTBOX (in case you add images later — keeping same as main) ----- */
+    .lightbox-overlay {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.95);
+      backdrop-filter: blur(8px);
+      z-index: 1000;
+      cursor: pointer;
+      justify-content: center;
+      align-items: center;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
 
-    /* Media Queries - Consistent */
-    @media (max-width: 600px) {
+    .lightbox-overlay.active {
+      display: flex;
+      opacity: 1;
+    }
+
+    .lightbox-content {
+      max-width: 90vw;
+      max-height: 90vh;
+      position: relative;
+      transform: scale(0.9);
+      transition: transform 0.3s ease;
+    }
+
+    .lightbox-overlay.active .lightbox-content {
+      transform: scale(1);
+    }
+
+    .lightbox-content img {
+      max-width: 100%;
+      max-height: 90vh;
+      object-fit: contain;
+      border-radius: 12px;
+      box-shadow: 0 0 40px rgba(45, 212, 191, 0.2);
+      border: 2px solid #2dd4bf40;
+    }
+
+    .lightbox-close {
+      position: absolute;
+      top: -40px;
+      right: 0;
+      color: white;
+      font-size: 2rem;
+      cursor: pointer;
+      background: rgba(0,0,0,0.5);
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.2s;
+    }
+
+    .lightbox-close:hover {
+      background: rgba(45, 212, 191, 0.3);
+    }
+
+    .lightbox-caption {
+      position: absolute;
+      bottom: -40px;
+      left: 0;
+      color: #97a7a4;
+      font-size: 1rem;
+    }
+
+    /* ----- RESPONSIVE (matching main) ----- */
+    @media (max-width: 700px) {
       #features-hero h1 {
-        font-size: 10vw;
+        font-size: 12vw;
       }
       #features-hero p {
-        font-size: 1rem;
-      }
-      #features-content {
-        margin: 2rem 1rem 4rem;
+        font-size: 1.2rem;
       }
       .nav {
-        flex-direction: column;
         top: 1rem;
         right: 1rem;
-        gap: 0.5rem;
+        gap: 0.4rem;
       }
       .nav a {
-        font-size: 0.9rem;
-        padding: 0.3rem 0.8rem;
+        padding: 0.35rem 1rem;
+        font-size: 0.85rem;
+      }
+      #features-content {
+        padding: 2rem 1.2rem 4rem;
+      }
+      section h2 {
+        font-size: 2rem;
+        padding-left: 1rem;
       }
       .feature-card {
-        padding: 1rem; /* Adjust padding for smaller screens */
+        padding: 1.5rem;
       }
       .feature-card h3 {
-        font-size: 1.2rem;
+        font-size: 1.4rem;
       }
       .feature-card p {
         font-size: 1rem;
@@ -220,7 +337,7 @@
       </div>
       <div class="feature-card">
         <h3>Temperature Sensor</h3>
-        <p>Includes an MCP9701 temperature sensor for accurate monitoring of ambient or board temperatures, crucial for environmental data logging and system health.</p>
+        <p>Includes an MCP9701 temperature sensor for accurate monitoring of ambient or board temperatures, crucial for environmental data logging and system health. -10℃ - +125℃.</p>
       </div>
     </section>
 
@@ -228,7 +345,7 @@
       <h2>Visual & Audio Feedback</h2>
       <div class="feature-card">
         <h3>High-Resolution Display</h3>
-        <p>A vibrant 240x320 TFT display (ST7789) provides a crisp, colorful screen for rich user interfaces, detailed data visualization, and interactive applications.</p>
+        <p>A vibrant 240x320 TFT display (ST7789) provides a crisp, colorful screen for rich user interfaces, detailed data visualization, and interactive applications. Max SPI speed is ~ 60 MHz.</p>
       </div>
       <div class="feature-card">
         <h3>Dual Status LEDs</h3>
@@ -236,7 +353,7 @@
       </div>
       <div class="feature-card">
         <h3>Piezo Buzzer</h3>
-        <p>A versatile piezo buzzer offers audible feedback for alarms, button presses, system alerts, and even custom sound effects or simple tunes.</p>
+        <p>A versatile piezo buzzer offers audible feedback for alarms, button presses, system alerts, and even custom sound effects or simple tunes. 100-4000 Hz, 75 dB.</p>
       </div>
     </section>
 
@@ -244,15 +361,15 @@
       <h2>Storage & Connectivity</h2>
       <div class="feature-card">
         <h3>Micro SD Card Slot</h3>
-        <p>Provides expandable storage for extensive data logging, loading custom firmware, managing configuration files, and handling large datasets.</p>
+        <p>Provides expandable storage for extensive data logging, loading custom firmware, managing configuration files, and handling large datasets. Supported file systems include FAT12, FAT16 and FAT32.</p>
       </div>
       <div class="feature-card">
-        <h3>Shared SPI Bus</h3>
-        <p>The full SPI bus is efficiently shared between the PN532 NFC and the SD card module, utilizing dedicated Chip Select (CS) pins for seamless operation of both peripherals.</p>
+        <h3>SPI</h3>
+        <p>The full SPI bus is efficiently shared between the PN532 NFC and the SD card module, utilizing dedicated Chip Select (CS) pins for seamless operation of both peripherals. These can be controlled in software.</p>
       </div>
       <div class="feature-card">
         <h3>USB-C Port</h3>
-        <p>A modern USB-C port with CC line detection for reliable power delivery, fast data transfer, and robust serial communication with development environments.</p>
+        <p>A USB-C port for reliable power delivery, fast data transfer, and serial communication with development environments.</p>
       </div>
     </section>
 
@@ -260,7 +377,7 @@
       <h2>Expandability & Debugging</h2>
       <div class="feature-card">
         <h3>GPIO Expansion Pins</h3>
-        <p>Accessible General Purpose Input/Output (GPIO) pins are broken out for connecting external modules, sensors, and custom circuitry, extending Phantomware's capabilities.</p>
+        <p>Accessible General Purpose Input/Output (GPIO) pins are broken out for connecting external modules, sensors, custom circuitry, and for signal analysis, extending Phantomware's capabilities.</p>
       </div>
       <div class="feature-card">
         <h3>Communication Breakouts</h3>
@@ -268,14 +385,66 @@
       </div>
       <div class="feature-card">
         <h3>Maximized GPIO Utilization</h3>
-        <p>All relevant GPIOs are thoughtfully assigned and exposed to ensure maximum functionality and ease of use for developers building complex projects.</p>
+        <p>All relevant GPIOs are assigned and exposed to ensure maximum functionality and ease of use for developers building complex projects.</p>
       </div>
     </section>
 
     <footer>
-      <p>Made by Dylan Haines — <a href="https://github.com/agekoda" target="_blank" rel="noopener">GitHub</a></p>
+      <p>Made by Dylan Haines - <a href="https://github.com/agekoda" target="_blank" rel="noopener">GitHub</a></p>
     </footer>
   </div>
 
+
+  <div class="lightbox-overlay" id="lightbox">
+    <div class="lightbox-content">
+      <img src="" alt="" id="lightbox-img">
+      <div class="lightbox-close" id="lightbox-close">×</div>
+      <div class="lightbox-caption" id="lightbox-caption"></div>
+    </div>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const lightbox = document.getElementById('lightbox');
+      const lightboxImg = document.getElementById('lightbox-img');
+      const lightboxCaption = document.getElementById('lightbox-caption');
+      const lightboxClose = document.getElementById('lightbox-close');
+      
+      const clickableImages = document.querySelectorAll('.clickable-image');
+      
+      clickableImages.forEach(img => {
+        img.addEventListener('click', function(e) {
+          e.stopPropagation();
+          const src = this.getAttribute('src');
+          const caption = this.getAttribute('data-caption') || this.alt || 'Phantomware image';
+          
+          lightboxImg.src = src;
+          lightboxImg.alt = this.alt;
+          lightboxCaption.textContent = caption;
+          lightbox.classList.add('active');
+          document.body.style.overflow = 'hidden';
+        });
+      });
+      
+      function closeLightbox() {
+        lightbox.classList.remove('active');
+        document.body.style.overflow = '';
+      }
+      
+      lightbox.addEventListener('click', closeLightbox);
+      if (lightboxClose) {
+        lightboxClose.addEventListener('click', function(e) {
+          e.stopPropagation();
+          closeLightbox();
+        });
+      }
+      
+      document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && lightbox.classList.contains('active')) {
+          closeLightbox();
+        }
+      });
+    });
+  </script>
 </body>
 </html>
