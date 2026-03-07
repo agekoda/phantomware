@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Phantomware · edge to edge</title>
+  <title>Phantomware · refined</title>
   <style>
     /* ----- RESET & GLOBAL ----- */
     * {
@@ -20,7 +20,6 @@
       scroll-behavior: smooth;
     }
 
-    /* fallback – Inter looks great but we add system fallback */
     h1, h2, h3 {
       font-weight: 500;
       letter-spacing: -0.02em;
@@ -37,7 +36,7 @@
       text-decoration: underline;
     }
 
-    /* ----- NAVIGATION (lighter, elevated) ----- */
+    /* ----- NAVIGATION ----- */
     .nav {
       position: absolute;
       top: 2rem;
@@ -69,7 +68,7 @@
       text-decoration: none;
     }
 
-    /* ----- HERO (full width, clean) ----- */
+    /* ----- HERO ----- */
     #hero {
       min-height: 85vh;
       display: flex;
@@ -102,20 +101,18 @@
       font-weight: 300;
     }
 
-    /* ----- MAIN LAYOUT – full width with inner containers ----- */
+    /* ----- MAIN LAYOUT ----- */
     #main-content {
       width: 100%;
       background: #0f0f0f;
     }
 
-    /* every textual block gets a centered container */
     .container {
       max-width: 1200px;
       margin: 0 auto;
       padding: 0 2rem;
     }
 
-    /* section spacing */
     .section {
       padding: 5rem 0;
       border-bottom: 1px solid #202020;
@@ -141,7 +138,7 @@
       max-width: 780px;
     }
 
-    /* ----- FULL‑WIDTH MEDIA BLOCKS (images stretch edge to edge) ----- */
+    /* ----- FULL‑WIDTH MEDIA BLOCK (background now matches section) ----- */
     .full-bleed {
       width: 100vw;
       position: relative;
@@ -149,18 +146,17 @@
       right: 50%;
       margin-left: -50vw;
       margin-right: -50vw;
-      background: #0a0a0a; /* subtle background for the media region */
-      padding: 2rem calc((100vw - 100%) / 2); /* optical alignment */
+      background: #0f0f0f;        /* changed from #0a0a0a to match section bg */
+      padding: 2rem calc((100vw - 100%) / 2);
     }
 
-    /* inner wrapper for the actual images (keeps spacing) */
     .media-grid {
       max-width: 1400px;
       margin: 0 auto;
       padding: 0 1.5rem;
     }
 
-    /* flexible row for front + 3d grid */
+    /* front + 3d grid row - left image bigger & shifted left */
     .schematic-row {
       display: flex;
       flex-wrap: wrap;
@@ -170,8 +166,8 @@
     }
 
     .left-schematic {
-      flex: 1 1 400px;
-      min-width: 280px;
+      flex: 1.5 1 550px;           /* increased size */
+      min-width: 320px;
     }
 
     .left-schematic img {
@@ -210,21 +206,57 @@
       border-color: #2dd4bf;
     }
 
-    /* standalone images (back, pcb) – also full bleed */
-    .full-image {
+    /* NEW: two‑column row for back + pcb wiring */
+    .dual-image-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2rem;
       margin: 2.5rem 0;
+    }
+
+    .dual-image-row .image-card {
+      flex: 1 1 300px;
+      min-width: 250px;
+    }
+
+    .dual-image-row img {
+      width: 100%;
+      height: auto;
+      border-radius: 24px;
+      box-shadow: 0 25px 40px -12px #000;
+      border: 1px solid #2d4a45;
+      transition: 0.2s;
+      display: block;
+    }
+
+    .dual-image-row img:hover {
+      border-color: #2dd4bf80;
+    }
+
+    .caption {
+      font-size: 1rem;
+      color: #97a7a4;
+      margin-top: 0.5rem;
+      margin-bottom: 0;
+      display: block;
+      font-weight: 400;
+      letter-spacing: 0.3px;
+    }
+
+    /* standalone images (no longer used for back/pcb, but keep for safety) */
+    .full-image {
       width: 100%;
       border-radius: 28px;
       box-shadow: 0 30px 50px -20px #000000;
       border: 1px solid #2b4b46;
       transition: 0.2s;
+      margin: 2rem 0;
     }
 
     .full-image:hover {
       border-color: #2dd4bf80;
     }
 
-    /* PDF iframe – keep nice but contained inside media grid */
     .pdf-embed {
       width: 100%;
       height: 700px;
@@ -235,23 +267,7 @@
       border: 1px solid #2b4b46;
     }
 
-    /* image captions (still inside centered container for clean reading) */
-    .caption {
-      font-size: 1rem;
-      color: #97a7a4;
-      margin-top: 0.5rem;
-      margin-bottom: 2rem;
-      display: block;
-      font-weight: 400;
-      letter-spacing: 0.3px;
-    }
-
-    /* override default image margins */
-    img {
-      display: block;
-    }
-
-    /* comparison table – make it pop */
+    /* comparison table */
     .comparison-table {
       width: 100%;
       border-collapse: collapse;
@@ -295,7 +311,6 @@
       background: #191919;
     }
 
-    /* footer */
     .footer {
       text-align: center;
       font-size: 1rem;
@@ -329,7 +344,10 @@
         font-size: 2rem;
       }
       .right-grid {
-        grid-template-columns: 1fr; /* stack on small */
+        grid-template-columns: 1fr;
+      }
+      .dual-image-row {
+        flex-direction: column;
       }
       .pdf-embed {
         height: 450px;
@@ -340,11 +358,6 @@
       .container {
         padding: 0 1.2rem;
       }
-    }
-
-    /* subtle hover for links */
-    .btn-subtle {
-      transition: all 0.2s;
     }
   </style>
 </head>
@@ -359,7 +372,6 @@
     <p>Compact, powerful ESP32-S3 platform for IR, NFC, sensors, display & more.</p>
   </div>
 
-  <!-- main area: full width, with inner containers for text -->
   <div id="main-content">
     <!-- ABOUT section -->
     <div class="section">
@@ -373,7 +385,7 @@
       </div>
     </div>
 
-    <!-- COMPARISON section (text inside container, table naturally expands but we keep it inside container for readability) -->
+    <!-- COMPARISON section -->
     <div class="section">
       <div class="container">
         <h2>Phantomware vs. Flipper Zero</h2>
@@ -404,18 +416,16 @@
       </div>
     </div>
 
-    <!-- SCHEMATICS – this section uses full‑bleed for all images -->
+    <!-- SCHEMATICS – full bleed with fixed background -->
     <div class="section" style="padding-bottom: 2rem;">
       <div class="container">
         <h2>Schematics & Drawings</h2>
-        <p style="margin-bottom: 1rem;">Front, back, 3D views and full pcb layout — now edge to edge.</p>
+        <p style="margin-bottom: 1rem;">Front, back, 3D views, PCB layout — now edge to edge.</p>
       </div>
 
-      <!-- full width media block -->
       <div class="full-bleed">
         <div class="media-grid">
-
-          <!-- front + 3d grid row (full width) -->
+          <!-- front + 3d grid row (left image bigger) -->
           <div class="schematic-row">
             <div class="left-schematic">
               <img src="images/front.png" alt="Front PCB">
@@ -429,27 +439,28 @@
             </div>
           </div>
 
-          <!-- back image -->
-          <img src="images/back.png" alt="Back PCB" class="full-image">
-          <span class="caption" style="margin-top: -1rem;">Back of PCB</span>
+          <!-- back + pcb wiring side by side (new dual row) -->
+          <div class="dual-image-row">
+            <div class="image-card">
+              <img src="images/back.png" alt="Back PCB">
+              <span class="caption">Back of PCB</span>
+            </div>
+            <div class="image-card">
+              <img src="images/pcb.png" alt="PCB Routing">
+              <span class="caption">PCB Wiring</span>
+            </div>
+          </div>
 
-          <!-- pcb wiring image -->
-          <img src="images/pcb.png" alt="PCB Routing" class="full-image">
-          <span class="caption" style="margin-top: -1rem;">PCB Wiring</span>
-
-          <!-- schematic pdf - still fits media grid width but we want it clean -->
+          <!-- schematic pdf (unchanged) -->
           <p style="color: #bcdad3; font-size: 1.4rem; font-weight: 400; margin: 2rem 0 0.5rem;">Schematic (PDF)</p>
           <iframe src="images/schematic.pdf" class="pdf-embed" title="Phantomware schematic PDF"></iframe>
         </div>
       </div>
     </div>
 
-    <!-- footer sits inside main content flow, not full bleed -->
     <div class="footer container">
       <p>Made by Dylan Haines, 2026 — <a href="https://github.com/agekoda" target="_blank" rel="noopener">GitHub</a></p>
     </div>
   </div>
-
-  <!-- subtle note: all images are placeholders – replace with your actual files in /images/ -->
 </body>
 </html>
