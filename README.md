@@ -23,7 +23,7 @@
   </a>
 
   <a href="https://designedbykoda.com">
-    <img src="https://github.com/agekoda/phantomware/blob/ca025c1682c1570017a463161175f62c2c5ac098/koda.png?raw=true" width="70" style="margin: 0 8px;" />
+    <img src="https://github.com/agekoda/phantomware/blob/main/kodalogo.png?raw=true" width="70" style="margin: 0 8px;" />
   </a>
 </h4>
 </div>
