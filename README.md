@@ -28,6 +28,7 @@
 </h4>
 </div>
 
+
 ## 🔥 Overview
 
 Phantomware is a fully custom-built multi-tool device based on the ESP32-S3, designed for wireless analysis, signal interaction, and hardware experimentation.
@@ -35,6 +36,12 @@ Phantomware is a fully custom-built multi-tool device based on the ESP32-S3, des
 It combines RF, GPIO, IR, and NFC capabilities into a portable platform featuring a 240×320 TFT display, SD card storage, and a 3000mAh battery system with a full charging circuit, MAX17055 fuel gauge, and built-in overcharge and overcurrent protection.
 
 With 6 navigation buttons and a modular software framework, Phantomware is built for advanced IoT development, prototyping, and hardware exploration.
+
+<div align="center"> 
+  <img src="https://github.com/agekoda/phantomware/blob/main/images/all together.jpeg?raw=true" alt="screenshot" width="Auto" height="Auto" />
+</div>
+
+<div>&nbsp;</div>
 
 ## Phantomware vs. Flipper Zero
 
@@ -53,22 +60,6 @@ With 6 navigation buttons and a modular software framework, Phantomware is built
 
 > [!NOTE]
 > Information for Flipper Zero is based on publicly available specifications and may vary.
-
-<div>&nbsp;</div>
-
-## 🧠 About the Project
-Phantomware is built for learning, testing, and experimentation across multiple domains:
-
-* Wireless communication
-* Embedded systems
-* Signal analysis
-* Hardware prototyping
-
-It is designed to be **modular, extensible, and developer-friendly**.
-
-<div align="center"> 
-  <img src="https://github.com/agekoda/phantomware/blob/main/images/all together.jpeg?raw=true" alt="screenshot" width="Auto" height="Auto" />
-</div>
 
 ## 🚀 Features
 
