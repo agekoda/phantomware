@@ -15,7 +15,7 @@
    
 <h4>
   <a href="https://www.tiktok.com/@designedbykoda">
-    <img src="https://cdn.simpleicons.org/tiktok/000000" width="22" style="margin: 0 8px;" />
+    <img src="https://cdn.simpleicons.org/tiktok/FFFFFF" width="22" style="margin: 0 8px;" />
   </a>
 
   <a href="https://www.youtube.com/@zdhd">
