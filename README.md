@@ -140,7 +140,7 @@ Distributed under the MIT License. See LICENSE.txt for more information.
 <!-- Contact -->
 ## 🤝 Contact
 
-Email - enquiries@designedbykoda.com
+Email - hello@designedbykoda.com
 
 Project Link: [https://github.com/agekoda/phantomware](https://github.com/agekoda/phantomware)
 
